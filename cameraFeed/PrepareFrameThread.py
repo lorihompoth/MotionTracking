@@ -3,18 +3,15 @@ import cv2
 
 
 class PrepareFrameThread(threading.Thread):
-    def __init__(self, camera, frameLock, xFlip, yFlip):
+    def __init__(self, camera, xFlip, yFlip):
         threading.Thread.__init__(self)
         self.__camera = camera
-        self.__frameLock = frameLock
         self.__xFlip = xFlip
         self.__yFlip = yFlip
 
     def run(self):
-        self.__frameLock.acquire()
         self.__frame = self.__camera.getFrame()
         self.__doTheFlips()
-        self.__frameLock.release()
 
     def __doTheFlips(self):
         if self.__xFlip and self.__yFlip:
@@ -23,6 +20,4 @@ class PrepareFrameThread(threading.Thread):
             self.__frame = cv2.flip(image, 1)  # yFlip
 
     def getPreparedFrame(self):
-        self.__frameLock.acquire()
         return self.__frame
-        self.__frameLock.release()
