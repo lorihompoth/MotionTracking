@@ -10,7 +10,7 @@ class CameraFeed:
 
     def getFrame(self):
         with self.__cv:
-            while not self.__cam.isAvailable():
+            while not self.__camera.isAvailable():
                 self.__cv.wait()
-        return self.__cam.getSavedFrame()
+        return self.__camera.getSavedFrame()
 
