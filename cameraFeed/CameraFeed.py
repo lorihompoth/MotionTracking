@@ -11,11 +11,11 @@ class CameraFeed:
 
     def getFrame(self):
 
-        print("camFeed.getFrame/started")
+        #print("camFeed.getFrame/started")
         with self.__cv:
             while not self.__camera.isAvailable():
                 self.__cv.wait()
 
-        print("camFeed.getFrame/returning")
+        #print("camFeed.getFrame/returning")
         return self.__camera.getFrame()
 

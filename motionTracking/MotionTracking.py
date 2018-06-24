@@ -40,12 +40,12 @@ class MotionTracking:
         self.__phase0 = self.__cameraFeed.getFrame()
         print("mt.getFinal/cameraFeed.getFrame() finished")
 
-        cv2.imshow("0", self.__phase0)
+        #cv2.imshow("0", self.__phase0)
         print("mt.getFinal/__blackAndWhite")
         self.__phase1 = self.__blackAndWhite(self.__phase0)
         print("mt.getFinal/__blackAndWhite finished")
 
-        cv2.imshow("1", self.__phase1)
+        #cv2.imshow("1", self.__phase1)
         self.__finalImg = self.__phase0.copy()
         print("mt.getFinal/phase0 copied")
 

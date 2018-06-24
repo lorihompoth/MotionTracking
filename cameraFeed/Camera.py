@@ -44,7 +44,7 @@ class Camera(threading.Thread):
             image = frame.array
             cv2.imshow("camera", frame.array)
             with self.__cv:
-                print("camera with cv")
+                #print("camera with cv")
                 self.__savedFrame = image
                 self.__isAvailable = True
                 self.__cv.notify()
