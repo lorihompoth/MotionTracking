@@ -23,7 +23,9 @@ class MotionTracking:
         self.__frameCount = 0
         self.__blackImage = np.zeros((self.__HEIGHT, self.__WIDTH, 3), np.uint8)
 
+
         self.__phase0Prev = cameraFeed.getFrame()
+        print("cameraFeed.getFrame finished")
         self.__phase1Prev = self.__blackAndWhite(self.__phase0Prev)
         self.__moveRestrictionStart = time.time()
         self.__mechanics.moveToMiddle()
