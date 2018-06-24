@@ -16,7 +16,7 @@ def move(direction, amount):
     try:
         gpioPin = gpioSelect[direction]
         dutyPercentage = dutyPercentageSelect[direction]
-        milliseconds = amount / 4
+        milliseconds = amount / 2
         if milliseconds % 20 == 0:
             milliseconds += 5
     except KeyError:

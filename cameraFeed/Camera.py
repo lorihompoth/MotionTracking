@@ -4,6 +4,9 @@ import time
 import cv2
 import threading
 
+from cameraFeed.Preview import Preview
+
+
 
 class Camera(threading.Thread):
     def __init__(self, width, height, rotation, framerate, cv):
@@ -39,6 +42,9 @@ class Camera(threading.Thread):
         return self.__savedFrame
 
     def run(self):
+        p = Preview(self.__cam)
+        #p.start()
+        
         i = 0
         for frame in self.__cam.capture_continuous(self.__rawCapture, format="bgr", use_video_port=True):
             image = frame.array

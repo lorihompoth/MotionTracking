@@ -10,15 +10,15 @@ class MotionTracking:
         #print("mt.constructor/started")
         self.__cameraFeed = cameraFeed
         self.__mechanics = mechanics
-        self.__THRESHOLD = 20
+        self.__THRESHOLD = 14
         self.__WIDTH = 432
         self.__HEIGHT = 368
         self.__BLUR = 40
         self.__BLUR_SQUARED = self.__BLUR * self.__BLUR
         self.__VIEW_ANGLE_H = 180
         self.__VIEW_ANGLE_V = 180
-        self.__MIN_MOVE_TRIGGER_ANGLE = 75
-        self.__STANDBY_AFTER_MOVE_MILLIS = 500
+        self.__MIN_MOVE_TRIGGER_ANGLE = 70
+        self.__STANDBY_AFTER_MOVE_MILLIS = 460
         self.__centerX = self.__WIDTH / 2
         self.__centerY = self.__HEIGHT / 2
         self.__frameCount = 0
@@ -95,6 +95,7 @@ class MotionTracking:
     def __binarizeOtsu(self, image):
         resultTuple = cv2.threshold(image, 128, 255, cv2.THRESH_OTSU)
         threshValue = resultTuple[0]
+        #print("Threshold: " + str(threshValue))
         if threshValue > self.__THRESHOLD:
             return resultTuple[1]
         return None
