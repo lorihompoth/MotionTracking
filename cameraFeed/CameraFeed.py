@@ -9,11 +9,11 @@ class CameraFeed:
         self.__yFlip = yFlip
         self.__frameLock = threading.Lock()
         self.__prepareThread = PrepareFrameThread(self.__camera, self.__frameLock, self.__xFlip, self.__yFlip)
+        self.__prepareThread.start()
 
     def getFrame(self):
-        self.__frameLock.acquire()
         frame = self.__prepareThread.getPreparedFrame()
-        self.__frameLock.release()
+        self.__prepareThread = PrepareFrameThread(self.__camera, self.__frameLock, self.__xFlip, self.__yFlip)
         self.__prepareThread.start()
         return frame
 

@@ -7,7 +7,6 @@ class PrepareFrameThread(threading.Thread):
         threading.Thread.__init__(self)
         self.__camera = camera
         self.__frameLock = frameLock
-        self.__frame = camera.getFrame()
         self.__xFlip = xFlip
         self.__yFlip = yFlip
 
@@ -24,4 +23,6 @@ class PrepareFrameThread(threading.Thread):
             self.__frame = cv2.flip(image, 1)  # yFlip
 
     def getPreparedFrame(self):
+        self.__frameLock.acquire()
         return self.__frame
+        self.__frameLock.release()
