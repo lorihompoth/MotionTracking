@@ -17,5 +17,5 @@ class CameraFeed:
                 self.__cv.wait()
 
         print("camFeed.getFrame/returning")
-        return self.__camera.getSavedFrame()
+        return self.__camera.getFrame()
 
