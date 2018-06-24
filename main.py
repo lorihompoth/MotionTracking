@@ -6,11 +6,6 @@ import time
 
 print("started")
 
-def printFps():
-	fps = 1 / (time.time() - t)
-	print("fps: " + str(int(fps)))
-	t = time.time()
-
 WIDTH = 432
 HEIGHT = 368
 FRAMERATE = 20
@@ -23,5 +18,6 @@ print("motionTracking constructed")
 t = time.time()
 while True:
 	image = mt.getFinal()
-	printFps()
-
+	fps = 1/(time.time() - t)
+	print("fps: " + str(int(fps)))
+	t = time.time()
