@@ -42,7 +42,7 @@ class Camera(threading.Thread):
         i = 0
         for frame in self.__cam.capture_continuous(self.__rawCapture, format="bgr", use_video_port=True):
             image = frame.array
-            cv2.imshow("camera", frame.array)
+            #cv2.imshow("camera", frame.array)
             with self.__cv:
                 #print("camera with cv")
                 self.__savedFrame = image

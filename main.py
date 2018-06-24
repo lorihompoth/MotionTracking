@@ -21,4 +21,4 @@ while True:
 	cv2.imshow("asd", image)
 	print("imshow finished")
 	print("execution paused")
-	#input()
+	input()
