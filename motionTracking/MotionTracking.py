@@ -32,27 +32,44 @@ class MotionTracking:
 
 
     def getFinal(self):
+        print("mt.getFinal/cameraFeed.getFrame()")
         self.__phase0 = self.__cameraFeed.getFrame()
+        print("mt.getFinal/cameraFeed.getFrame() finished")
+        print("mt.getFinal/__blackAndWhite")
         self.__phase1 = self.__blackAndWhite(self.__phase1)
+        print("mt.getFinal/__blackAndWhite finished")
         self.__finalImg = self.__phase0.copy()
+        print("mt.getFinal/phase0 copied")
 
         self.__phase0Prev = self.__phase0
         self.__phase1Prev = self.__phase1
 
+        print("mt.getFinal/__diff")
         self.__phase2 = self.__diff(self.__phase1, self.__phase1Prev)
+        print("mt.getFinal/__diff finished")
+        print("mt.getFinal/binarizeOtsu")
         self.__phase3 = self.__binarizeOtsu(self.phase2)
+        print("mt.getFinal/binarizeOtsu Finished")
 
         if self.__phase3 is None:
             self.__phase3 = self.__blackImage
             self.__phase4 = self.__blackImage
             self.__phase5 = self.__blackImage
         else:
+            print("mt.getFinal/__blur")
             self.__phase4 = self.__blur(self.__phase3)
+            print("mt.getFinal/__blur finished")
+            print("mt.getFinal/__binarizeSimple")
             self.__phase5 = self.__binarizeSimple(self.__phase4)
+            print("mt.getFinal/__binarizeSimple finished")
 
             if self.__frameCount > 3 and not self.__isMoveForbidden():
+                print("mt.getFinal/__pointOutMovingSpots")
                 closest = self.__pointOutMovingSpots(self.__phase5, self.__finalImg)
+                print("mt.getFinal/__pointOutMovingSpots finished")
+                print("mt.getFinal/__mechanicsProceed")
                 self.__mechanicsProceed(closest)
+                print("mt.getFinal/__mechanicsProceed finished")
 
         self.__frameCount += 1
 
