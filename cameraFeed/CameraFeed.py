@@ -4,9 +4,9 @@ from cameraFeed.Camera import Camera
 
 
 class CameraFeed:
-    def __init__(self, width, height, rotation):
+    def __init__(self, width, height, rotation, framerate):
         self.__cv = threading.Condition()
-        self.__camera = Camera(width, height, rotation, self.__cv)
+        self.__camera = Camera(width, height, rotation, framerate, self.__cv)
 
     def getFrame(self):
         with self.__cv:

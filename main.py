@@ -8,14 +8,11 @@ print("started")
 WIDTH = 432
 HEIGHT = 368
 FRAMERATE = 20
-print("camera()")
-cam = Camera(WIDTH, HEIGHT, FRAMERATE)
-print("camera constructed")
+ROTATION = 180
 print("cameraFeed()")
-cf = CameraFeed(cam, True, True)
+camFeed = CameraFeed(WIDTH, HEIGHT, ROTATION, FRAMERATE)
 print("cameraFeed constructed")
-print("motionTracking()")
-mt = MotionTracking(cf)
+mt = MotionTracking(camFeed)
 print("motionTracking constructed")
 while True:
 	print("motionTracking.getFinal() called")
