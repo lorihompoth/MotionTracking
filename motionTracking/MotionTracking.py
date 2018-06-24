@@ -49,14 +49,16 @@ class MotionTracking:
         self.__finalImg = self.__phase0.copy()
         print("mt.getFinal/phase0 copied")
 
-        self.__phase0Prev = self.__phase0
-        self.__phase1Prev = self.__phase1
 
         print("mt.getFinal/__diff")
         self.__phase2 = self.__diff(self.__phase1, self.__phase1Prev)
         print("mt.getFinal/__diff finished")
         cv2.imshow("diff", self.__phase2)
-        input()
+
+        self.__phase0Prev = self.__phase0
+        self.__phase1Prev = self.__phase1
+
+        #input()
         print("mt.getFinal/binarizeOtsu")
         self.__phase3 = self.__binarizeOtsu(self.__phase2)
         print("mt.getFinal/binarizeOtsu Finished")
