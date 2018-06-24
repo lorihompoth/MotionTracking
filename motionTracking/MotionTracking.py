@@ -53,7 +53,7 @@ class MotionTracking:
         print("mt.getFinal/__diff")
         self.__phase2 = self.__diff(self.__phase1, self.__phase1Prev)
         print("mt.getFinal/__diff finished")
-        cv2.imshow("diff", self.__phase2)
+        #cv2.imshow("diff", self.__phase2)
 
         self.__phase0Prev = self.__phase0
         self.__phase1Prev = self.__phase1
