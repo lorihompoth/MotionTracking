@@ -28,9 +28,9 @@ class MotionTracking:
 
         self.__phase0Prev = cameraFeed.getFrame()
         print("cameraFeed.getFrame finished")
-        cv2.imshow("0prev", self.__phase0Prev)
+        #cv2.imshow("0prev", self.__phase0Prev)
         self.__phase1Prev = self.__blackAndWhite(self.__phase0Prev)
-        cv2.imshow("1prev", self.__phase1Prev)
+        #cv2.imshow("1prev", self.__phase1Prev)
         self.__moveRestrictionStart = time.time()
         self.__mechanics.moveToMiddle()
 
