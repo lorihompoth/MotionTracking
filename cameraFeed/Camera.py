@@ -17,8 +17,6 @@ class Camera(threading.Thread):
         self.__cam.resolution = (width, height)
         self.__cam.framerate = framerate
         self.__rawCapture = PiRGBArray(self.__cam, size=(self.__width, self.__height))
-        self.__sentAFrame = False
-
 
         self.__cv = cv
         self.__savedFrame = None
@@ -38,7 +36,7 @@ class Camera(threading.Thread):
 
 
     def getFrame(self):
-        pass
+        return self.__savedFrame
 
     def run(self):
         i = 0
