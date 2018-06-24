@@ -1,6 +1,7 @@
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
+import cv2
 
 
 class Camera:
@@ -23,4 +24,6 @@ class Camera:
         print("camera.for")
         for frame in self.__cam.capture_continuous(self.__rawCapture, format="bgr", use_video_port=True):
             print("camera.returning...")
-            return frame.array.copy()
+            frameCopy = frame.array.copy()
+            cv2.imshow("camera", frameCopy)
+            return frameCopy
