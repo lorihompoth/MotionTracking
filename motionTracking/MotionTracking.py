@@ -26,7 +26,9 @@ class MotionTracking:
 
         self.__phase0Prev = cameraFeed.getFrame()
         print("cameraFeed.getFrame finished")
+        cv2.imshow("0prev", self.__phase0Prev)
         self.__phase1Prev = self.__blackAndWhite(self.__phase0Prev)
+        cv2.imshow("1prev", self.__phase1Prev)
         self.__moveRestrictionStart = time.time()
         self.__mechanics.moveToMiddle()
 
@@ -35,9 +37,13 @@ class MotionTracking:
         print("mt.getFinal/cameraFeed.getFrame()")
         self.__phase0 = self.__cameraFeed.getFrame()
         print("mt.getFinal/cameraFeed.getFrame() finished")
+
+        cv2.imshow("0", self.__phase0)
         print("mt.getFinal/__blackAndWhite")
         self.__phase1 = self.__blackAndWhite(self.__phase0)
         print("mt.getFinal/__blackAndWhite finished")
+
+        cv2.imshow("1", self.__phase1)
         self.__finalImg = self.__phase0.copy()
         print("mt.getFinal/phase0 copied")
 
