@@ -23,3 +23,5 @@ while True:
 	print("motionTracking.getFinal() finished")
 	cv2.imshow("asd", image)
 	print("imshow finished")
+	print("execution paused")
+	input()

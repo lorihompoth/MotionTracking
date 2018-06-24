@@ -20,7 +20,7 @@ class Camera:
 
     def getFrame(self):
         print("camera.truncate")
-        self.__rawCapture.truncate(0)
+        #self.__rawCapture.truncate(0)
         print("camera.for")
         for frame in self.__cam.capture_continuous(self.__rawCapture, format="bgr", use_video_port=True):
             #print("camera.show preview...")
