@@ -23,4 +23,4 @@ class Camera:
         print("camera.for")
         for frame in self.__cam.capture_continuous(self.__rawCapture, format="bgr", use_video_port=True):
             print("camera.returning...")
-            return frame.array
+            return frame.array.copy()
