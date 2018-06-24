@@ -18,6 +18,8 @@ class Camera:
         # camera warmup:
         time.sleep(0.1)
 
+
+
     def getFrame(self):
         print("camera.truncate")
         if self.__sentAFrame:
