@@ -2,6 +2,8 @@ from motionTracking.MotionTracking import MotionTracking
 from cameraFeed.Camera import Camera
 from cameraFeed.CameraFeed import CameraFeed
 
+print ("started")
+
 #heyasdasdsdfsf
 WIDTH = 432
 HEIGHT = 368
