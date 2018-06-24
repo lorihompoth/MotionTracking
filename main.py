@@ -6,6 +6,11 @@ import time
 
 print("started")
 
+def printFps():
+	fps = 1 / (time.time() - t)
+	print("fps: " + str(int(fps)))
+	t = time.time()
+
 WIDTH = 432
 HEIGHT = 368
 FRAMERATE = 20
@@ -17,13 +22,6 @@ mt = MotionTracking(camFeed)
 print("motionTracking constructed")
 t = time.time()
 while True:
-	#print("motionTracking.getFinal() called")
 	image = mt.getFinal()
-	fps = 1/(time.time() - t)
-	print("fps: " + str(fps))
-	t = time.time()
-	#print("motionTracking.getFinal() finished")
-	#cv2.imshow("asd", image)
-	#print("imshow finished")
-	#print("execution paused")
-	#input()
+	printFps()
+
