@@ -48,7 +48,7 @@ class MotionTracking:
         self.__phase2 = self.__diff(self.__phase1, self.__phase1Prev)
         print("mt.getFinal/__diff finished")
         print("mt.getFinal/binarizeOtsu")
-        self.__phase3 = self.__binarizeOtsu(self.phase2)
+        self.__phase3 = self.__binarizeOtsu(self.__phase2)
         print("mt.getFinal/binarizeOtsu Finished")
 
         if self.__phase3 is None:
