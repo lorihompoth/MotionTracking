@@ -22,6 +22,7 @@ class Camera:
         print("camera.truncate")
         if self.__sentAFrame:
             self.__rawCapture.truncate(0)
+            key = cv2.waitKey(1) & 0xFF
         print("camera.for")
         for frame in self.__cam.capture_continuous(self.__rawCapture, format="bgr", use_video_port=True):
             #print("camera.show preview...")
