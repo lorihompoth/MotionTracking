@@ -11,7 +11,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CameraFeed.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CameraFeed.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cameraFeed/CameraFeed.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
@@ -41,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MotionTracking.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MotionTracking.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/motionTracking/MotionTracking.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
+            <state relative-caret-position="336">
+              <caret line="80" column="30" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
               <folding>
                 <element signature="e#1#12#0" expanded="true" />
               </folding>
@@ -80,6 +80,7 @@
       <find>BLUR</find>
       <find>since</find>
       <find>AAAAAAA</find>
+      <find>getFinal</find>
     </findStrings>
     <replaceStrings>
       <replace>THRESHOLD</replace>
@@ -104,8 +105,8 @@
         <option value="$PROJECT_DIR$/cameraFeed/PrepareFrameThread.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/cameraFeed/Camera.py" />
-        <option value="$PROJECT_DIR$/motionTracking/MotionTracking.py" />
         <option value="$PROJECT_DIR$/cameraFeed/CameraFeed.py" />
+        <option value="$PROJECT_DIR$/motionTracking/MotionTracking.py" />
       </list>
     </option>
   </component>
@@ -118,7 +119,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1940" />
@@ -422,16 +423,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/motionTracking/MotionTracking.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
-          <folding>
-            <element signature="e#1#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cameraFeed/PrepareFrameThread.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -453,6 +444,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/motionTracking/MotionTracking.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="80" column="30" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+          <folding>
+            <element signature="e#1#12#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

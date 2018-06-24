@@ -78,6 +78,7 @@ class MotionTracking:
                 print("mt.getFinal/__mechanicsProceed finished")
 
         self.__frameCount += 1
+        return self.__finalImg
 
     def __blackAndWhite(self, image):
         return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
