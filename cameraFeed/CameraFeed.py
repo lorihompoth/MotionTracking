@@ -9,8 +9,12 @@ class CameraFeed:
         self.__camera = Camera(width, height, rotation, framerate, self.__cv)
 
     def getFrame(self):
+
+        print("camFeed.getFrame/started")
         with self.__cv:
             while not self.__camera.isAvailable():
                 self.__cv.wait()
+
+        print("camFeed.getFrame/returning")
         return self.__camera.getSavedFrame()
 

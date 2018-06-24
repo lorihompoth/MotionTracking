@@ -7,6 +7,7 @@ import mechanics
 
 class MotionTracking:
     def __init__(self, cameraFeed):
+        print("mt.constructor/started")
         self.__cameraFeed = cameraFeed
         self.__mechanics = mechanics
         self.__THRESHOLD = 20
@@ -23,6 +24,7 @@ class MotionTracking:
         self.__frameCount = 0
         self.__blackImage = np.zeros((self.__HEIGHT, self.__WIDTH, 3), np.uint8)
 
+        print("mt.constructor/constants done")
 
         self.__phase0Prev = cameraFeed.getFrame()
         print("cameraFeed.getFrame finished")
