@@ -23,8 +23,8 @@ class Camera:
         self.__rawCapture.truncate(0)
         print("camera.for")
         for frame in self.__cam.capture_continuous(self.__rawCapture, format="bgr", use_video_port=True):
-            print("camera.show preview...")
+            #print("camera.show preview...")
             frameCopy = frame.array.copy()
-            cv2.imshow("camera", frameCopy)
+            #cv2.imshow("camera", frameCopy)
             print("camera.returning")
             return frameCopy
