@@ -7,7 +7,7 @@ import mechanics
 
 class MotionTracking:
     def __init__(self, cameraFeed):
-        print("mt.constructor/started")
+        #print("mt.constructor/started")
         self.__cameraFeed = cameraFeed
         self.__mechanics = mechanics
         self.__THRESHOLD = 20
@@ -24,10 +24,10 @@ class MotionTracking:
         self.__frameCount = 0
         self.__blackImage = np.zeros((self.__HEIGHT, self.__WIDTH, 3), np.uint8)
 
-        print("mt.constructor/constants done")
+        #print("mt.constructor/constants done")
 
         self.__phase0Prev = cameraFeed.getFrame()
-        print("cameraFeed.getFrame finished")
+        #print("cameraFeed.getFrame finished")
         #cv2.imshow("0prev", self.__phase0Prev)
         self.__phase1Prev = self.__blackAndWhite(self.__phase0Prev)
         #cv2.imshow("1prev", self.__phase1Prev)
@@ -36,52 +36,52 @@ class MotionTracking:
 
 
     def getFinal(self):
-        print("mt.getFinal/cameraFeed.getFrame()")
+        #print("mt.getFinal/cameraFeed.getFrame()")
         self.__phase0 = self.__cameraFeed.getFrame()
-        print("mt.getFinal/cameraFeed.getFrame() finished")
+        #print("mt.getFinal/cameraFeed.getFrame() finished")
 
         #cv2.imshow("0", self.__phase0)
-        print("mt.getFinal/__blackAndWhite")
+        #print("mt.getFinal/__blackAndWhite")
         self.__phase1 = self.__blackAndWhite(self.__phase0)
-        print("mt.getFinal/__blackAndWhite finished")
+        #print("mt.getFinal/__blackAndWhite finished")
 
         #cv2.imshow("1", self.__phase1)
         self.__finalImg = self.__phase0.copy()
-        print("mt.getFinal/phase0 copied")
+        #print("mt.getFinal/phase0 copied")
 
 
-        print("mt.getFinal/__diff")
+        #print("mt.getFinal/__diff")
         self.__phase2 = self.__diff(self.__phase1, self.__phase1Prev)
-        print("mt.getFinal/__diff finished")
+        #print("mt.getFinal/__diff finished")
         #cv2.imshow("diff", self.__phase2)
 
         self.__phase0Prev = self.__phase0
         self.__phase1Prev = self.__phase1
 
         #input()
-        print("mt.getFinal/binarizeOtsu")
+        #print("mt.getFinal/binarizeOtsu")
         self.__phase3 = self.__binarizeOtsu(self.__phase2)
-        print("mt.getFinal/binarizeOtsu Finished")
+        #print("mt.getFinal/binarizeOtsu Finished")
 
         if self.__phase3 is None:
             self.__phase3 = self.__blackImage
             self.__phase4 = self.__blackImage
             self.__phase5 = self.__blackImage
         else:
-            print("mt.getFinal/__blur")
+            #print("mt.getFinal/__blur")
             self.__phase4 = self.__blur(self.__phase3)
-            print("mt.getFinal/__blur finished")
-            print("mt.getFinal/__binarizeSimple")
+            #print("mt.getFinal/__blur finished")
+            #print("mt.getFinal/__binarizeSimple")
             self.__phase5 = self.__binarizeSimple(self.__phase4)
-            print("mt.getFinal/__binarizeSimple finished")
+            #print("mt.getFinal/__binarizeSimple finished")
 
             if self.__frameCount > 3 and not self.__isMoveForbidden():
-                print("mt.getFinal/__pointOutMovingSpots")
+                #print("mt.getFinal/__pointOutMovingSpots")
                 closest = self.__pointOutMovingSpots(self.__phase5, self.__finalImg)
-                print("mt.getFinal/__pointOutMovingSpots finished")
-                print("mt.getFinal/__mechanicsProceed")
+                #print("mt.getFinal/__pointOutMovingSpots finished")
+                #print("mt.getFinal/__mechanicsProceed")
                 self.__mechanicsProceed(closest)
-                print("mt.getFinal/__mechanicsProceed finished")
+                #print("mt.getFinal/__mechanicsProceed finished")
 
         self.__frameCount += 1
         return self.__finalImg
