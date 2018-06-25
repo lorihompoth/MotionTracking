@@ -1,6 +1,7 @@
 from motionTracking.MotionTracking import MotionTracking
 from cameraFeed.Camera import Camera
 from cameraFeed.CameraFeed import CameraFeed
+from view.GUI import GUI
 import cv2
 import time
 print("started")

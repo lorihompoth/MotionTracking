@@ -1,13 +1,24 @@
 import gi # for GUI
-from motionTracking.MotionTracking import MotionTracking
-from cameraFeed.Camera import Camera
-from cameraFeed.CameraFeed import CameraFeed
-import cv2
-import time
+
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
-class GuiHandler:
+from motionTracking.MotionTracking import MotionTracking
+from cameraFeed.Camera import Camera
+from cameraFeed.CameraFeed import CameraFeed
+from view.GUI import GUI
+import cv2
+import time
+
+class GUI:
+    def __init__(self):
+        # def initializeGUI():
+        self.__builder = Gtk.Builder()
+        self.__builder.add_from_file("gui.glade")
+        self.__builder.connect_signals(self)
+        window = self.__builder.get_object("dialog1")
+        window.show_all()
+        Gtk.main()
 
     def onDestroy(self, *args):
         Gtk.main_quit()
@@ -40,36 +51,29 @@ class GuiHandler:
         self.__cameraFieldOfView = builder.get_object("entry4").get_text()
         self.__minTrigger = builder.get_object("entry3").get_text()
 
-#def initializeGUI():
-builder = Gtk.Builder()
-builder.add_from_file("gui.glade")
-builder.connect_signals(GuiHandler())
-window = builder.get_object("dialog1")
-window.show_all()
-Gtk.main()
 
+    def run(self):
+        print("started")
+        WIDTH = 432
+        HEIGHT = 368
+        FRAMERATE = 20
+        ROTATION = 180
+        print("cameraFeed()")
+        camFeed = CameraFeed(WIDTH, HEIGHT, ROTATION, FRAMERATE)
+        print("cameraFeed constructed")
+        mt = MotionTracking(camFeed)
+        print("motionTracking constructed")
+        t = time.time()
+        while True:
+            image = mt.getFinal()
+            if image is not None:
 
-print("started")
-WIDTH = 432
-HEIGHT = 368
-FRAMERATE = 20
-ROTATION = 180
-print("cameraFeed()")
-camFeed = CameraFeed(WIDTH, HEIGHT, ROTATION, FRAMERATE)
-print("cameraFeed constructed")
-mt = MotionTracking(camFeed)
-print("motionTracking constructed")
-t = time.time()
-while True:
-    image = mt.getFinal()
-    if image is not None:
-
-        cv2.imshow("asd", image)
-    else:
-        print("Main Prevented None")
-    # fps = 1/(time.time() - t)
-    # print("fps: " + str(int(fps)))
-    t = time.time()
+                cv2.imshow("asd", image)
+            else:
+                print("Main Prevented None")
+            # fps = 1/(time.time() - t)
+            # print("fps: " + str(int(fps)))
+            t = time.time()
 
 
 
