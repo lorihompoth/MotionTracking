@@ -6,11 +6,11 @@ from gi.repository import Gtk
 from motionTracking.MotionTracking import MotionTracking
 from cameraFeed.Camera import Camera
 from cameraFeed.CameraFeed import CameraFeed
-from view.GUI import GUI
+from view.Gui import Gui
 import cv2
 import time
 
-class GUI:
+class Gui:
     def __init__(self):
         # def initializeGUI():
         self.__builder = Gtk.Builder()

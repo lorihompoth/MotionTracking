@@ -1,5 +1,5 @@
-from view.GUI import GUI
-GUI().run()
+from view.Gui import Gui
+Gui().run()
 
 
 '''
