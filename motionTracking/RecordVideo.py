@@ -6,8 +6,8 @@ class RecordVideo:
     def __init__(self, path, width, heigth):
         self.__path = path
         ts = time.time()
-        filename = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d-%H-%M-%S')
-        self.__out = cv2.VideoWriter(path + filename + '.avi', cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (width, heigth))
+        filename = str(datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d-%H-%M-%S')) + ".avi"
+        self.__out = cv2.VideoWriter(filename, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (width, heigth))
 
 
         self.__i = 0
