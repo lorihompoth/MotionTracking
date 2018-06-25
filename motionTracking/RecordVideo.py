@@ -10,8 +10,15 @@ class RecordVideo:
         self.__out = cv2.VideoWriter(path + filename + '.avi', cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (width, heigth))
 
 
+        self.__i = 0
+
     def addFrame(self, image):
-        self.__out.write(image)
+        if image is not None and self.__i < 300:
+            self.__out.write(image)
+            self.__i += 1
+        if self.__i == 300:
+            self.finish()
+
 
 
     def finish(self):

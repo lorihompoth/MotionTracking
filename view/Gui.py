@@ -54,8 +54,8 @@ class Gui:
         self.__cameraFieldOfView = self.__builder.get_object("entry4").get_text()
         self.__minTrigger = self.__builder.get_object("entry3").get_text()
         #self.__window.destroy()
-        self.__window.connect('delete-event', self.on_button2_clicked)
-        Gtk.main_quit()
+        #self.__window.connect('delete-event', self.on_button2_clicked)
+        #Gtk.main_quit()
         #t = Thread(target=self.runApp(), args=(i, ))
         #t.start()
         #t.join()
@@ -68,6 +68,7 @@ class Gui:
         FRAMERATE = 20
         ROTATION = 180
         camFeed = CameraFeed(WIDTH, HEIGHT, ROTATION, FRAMERATE)
+        print(self.__destinationFolder[7:])
         mt = MotionTracking(camFeed, self.__destinationFolder[7:])
         t = time.time()
         while True:
@@ -75,7 +76,7 @@ class Gui:
             if image is not None:
                 #cv2.imshow("asd", image)
                 fps = 1/(time.time() - t)
-                print("fps: " + str(int(fps)))
+                #print("fps: " + str(int(fps)))
                 t = time.time()
 
 
