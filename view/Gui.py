@@ -1,7 +1,16 @@
-import gi # for GUI
 
+from motionTracking.MotionTracking import MotionTracking
+from cameraFeed.Camera import Camera
+from cameraFeed.CameraFeed import CameraFeed
+import cv2
+import time
+
+import gi # for GU
+
+from threading import Thread
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
+
 
 class Gui:
     def __init__(self):
@@ -9,8 +18,8 @@ class Gui:
         self.__builder = Gtk.Builder()
         self.__builder.add_from_file("gui.glade")
         self.__builder.connect_signals(self)
-        window = self.__builder.get_object("dialog1")
-        window.show_all()
+        self.__window = self.__builder.get_object("dialog1")
+        self.__window.show_all()
         Gtk.main()
 
     def onDestroy(self, *args):
@@ -20,6 +29,7 @@ class Gui:
         exit(0)
 
     def on_button2_clicked(self, arg1):
+
         self.__preview = self.__builder.get_object("checkbutton11").get_active()
         self.__finalScreen = self.__builder.get_object("checkbutton1").get_active()
         self.__phase1 = self.__builder.get_object("checkbutton2").get_active()
@@ -43,6 +53,42 @@ class Gui:
         self.__standbyBetweenMovements = self.__builder.get_object("entry2").get_text()
         self.__cameraFieldOfView = self.__builder.get_object("entry4").get_text()
         self.__minTrigger = self.__builder.get_object("entry3").get_text()
+        #self.__window.destroy()
+        self.__window.connect('delete-event', self.on_button2_clicked)
+        Gtk.main_quit()
+        #t = Thread(target=self.runApp(), args=(i, ))
+        #t.start()
+        #t.join()
+        #self.runApp()
+class App:
+    def runApp(self):
+        
+
+        print("started")
+        WIDTH = 432
+        HEIGHT = 368
+        FRAMERATE = 20
+        ROTATION = 180
+        print("cameraFeed()")
+        camFeed = CameraFeed(WIDTH, HEIGHT, ROTATION, FRAMERATE)
+        print("cameraFeed constructed")
+        mt = MotionTracking(camFeed)
+        print("motionTracking constructed")
+        t = time.time()
+        while True:
+            print("while")
+            image = mt.getFinal()
+            print("getFinal finished")
+            if image is not None:
+                
+                print("imshowing image")
+                #cv2.imshow("asd", image)
+                print("imshow done")
+            else:
+                print("Main Prevented None")
+            # fps = 1/(time.time() - t)
+            # print("fps: " + str(int(fps)))
+            t = time.time()
 
 
 
