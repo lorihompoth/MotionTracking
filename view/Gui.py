@@ -59,36 +59,24 @@ class Gui:
         #t = Thread(target=self.runApp(), args=(i, ))
         #t.start()
         #t.join()
-        #self.runApp()
-class App:
-    def runApp(self):
-        
+        self.runApp()
 
-        print("started")
+    def runApp(self):
+
         WIDTH = 432
         HEIGHT = 368
         FRAMERATE = 20
         ROTATION = 180
-        print("cameraFeed()")
         camFeed = CameraFeed(WIDTH, HEIGHT, ROTATION, FRAMERATE)
-        print("cameraFeed constructed")
-        mt = MotionTracking(camFeed)
-        print("motionTracking constructed")
+        mt = MotionTracking(camFeed, self.__destinationFolder[7:])
         t = time.time()
         while True:
-            print("while")
             image = mt.getFinal()
-            print("getFinal finished")
             if image is not None:
-                
-                print("imshowing image")
                 #cv2.imshow("asd", image)
-                print("imshow done")
-            else:
-                print("Main Prevented None")
-            # fps = 1/(time.time() - t)
-            # print("fps: " + str(int(fps)))
-            t = time.time()
+                fps = 1/(time.time() - t)
+                print("fps: " + str(int(fps)))
+                t = time.time()
 
 
 

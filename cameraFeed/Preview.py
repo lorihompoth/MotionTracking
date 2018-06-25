@@ -8,7 +8,7 @@ class Preview(threading.Thread):
         self.__camera = camera
 
     def run(self):
-        self.__camera.start_preview(fullscreen=False,window=(100,200,600,800))
+        self.__camera.start_preview(fullscreen=False,window=(100, 200, 600, 800))
         print("starting preview")
-        time.sleep(100)
-        self.__camera.stop_preview()
+        #time.sleep(100)
+        #self.__camera.stop_preview()

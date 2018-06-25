@@ -4,9 +4,10 @@ import cv2
 import numpy as np
 import math  # for sqrt
 import mechanics
+from motionTracking.RecordVideo import RecordVideo
 
 class MotionTracking:
-    def __init__(self, cameraFeed):
+    def __init__(self, cameraFeed, path):
         #print("mt.constructor/started")
         self.__cameraFeed = cameraFeed
         self.__mechanics = mechanics
@@ -33,6 +34,9 @@ class MotionTracking:
         #cv2.imshow("1prev", self.__phase1Prev)
         self.__moveRestrictionStart = time.time()
         self.__mechanics.moveToMiddle()
+
+        self.__path = path
+        self.__recordVideo = RecordVideo(self.__path, self.__WIDTH, self.__HEIGHT)
 
 
     def getFinal(self):
@@ -84,6 +88,7 @@ class MotionTracking:
                 #print("mt.getFinal/__mechanicsProceed finished")
 
         self.__frameCount += 1
+        self.__recordVideo.addFrame(self.__finalImg)
         return self.__finalImg
 
     def __blackAndWhite(self, image):
