@@ -270,6 +270,7 @@ class Gui:
         self.label1.setEnabled(newState)
         self.label2.setEnabled(newState)
         self.lineEdit1.setEnabled(newState)
+        self.checkBox9.setEnabled(newState)
         self.pushButton1.setEnabled(newState)
         self.spinBox1.setEnabled(newState)
         self.radioButton1.setEnabled(newState)
