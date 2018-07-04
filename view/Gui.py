@@ -287,7 +287,7 @@ class Gui:
         self.checkBox8.clicked.connect(self.toggleRecordEnabled)
         self.radioButton1.clicked.connect(self.toggleSeparateFilesEnabled)
         self.radioButton2.clicked.connect(self.toggleSeparateFilesEnabled)
-        self.checkBox9.clicked.connect(self.toggleTimecodeEnabled())
+        self.checkBox9.clicked.connect(self.toggleTimecodeEnabled)
         self.togglePreviewEnabled()
         self.toggleRecordEnabled()
         self.toggleSeparateFilesEnabled()
