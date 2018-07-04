@@ -59,6 +59,7 @@ class Gui:
         
         self.hBoxLayout1 = QHBoxLayout()
         self.lineEdit1 = QLineEdit()
+        self.lineEdit1.setText("/")
         self.pushButton1 = QPushButton("Browse")
         self.hBoxLayout1.addWidget(self.lineEdit1)
         self.hBoxLayout1.addWidget(self.pushButton1)
@@ -223,7 +224,7 @@ class Gui:
         self.__cameraFieldOfView = None
         self.__minTrigger = None
     
-    def togglePreviewEnabled():
+    def togglePreviewEnabled(self):
         newState = self.checkBox1.isChecked()
         self.checkBox2.setEnabled(newState)
         self.checkBox3.setEnabled(newState)
@@ -232,12 +233,12 @@ class Gui:
         self.checkBox6.setEnabled(newState)
         self.checkBox7.setEnabled(newState)
     
-    def toggleSeparateFilesEnabled():
+    def toggleSeparateFilesEnabled(self):
         newState = self.radioButton2.isChecked()
         self.radioButton3.setEnabled(newState)
         self.radioButton4.setEnabled(newState)
         
-    def toggleRecordEnabled():
+    def toggleRecordEnabled(self):
         newState = self.checkBox8.isChecked()
         self.label1.setEnabled(newState)
         self.label2.setEnabled(newState)
@@ -248,16 +249,16 @@ class Gui:
         self.radioButton2.setEnabled(newState)
         self.radioButton3.setEnabled(newState)
         self.radioButton4.setEnabled(newState)
-        toggleSeparateFilesEnabled()
+        self.toggleSeparateFilesEnabled()
 
     def connectHandlers(self):
-        self.checkBox1.clicked.connect(togglePreviewEnabled)
-        self.checkBox8.clicked.connect(toggleRecordEnabled)
-        self.radioButton1.clicked.connect(toggleSeparateFilesEnabled)
-        self.radioButton2.clicked.connect(toggleSeparateFilesEnabled)
-        togglePreviewEnabled()
-        toggleRecordEnabled()
-        toggleSeparateFilesEnabled()
+        self.checkBox1.clicked.connect(self.togglePreviewEnabled)
+        self.checkBox8.clicked.connect(self.toggleRecordEnabled)
+        self.radioButton1.clicked.connect(self.toggleSeparateFilesEnabled)
+        self.radioButton2.clicked.connect(self.toggleSeparateFilesEnabled)
+        self.togglePreviewEnabled()
+        self.toggleRecordEnabled()
+        self.toggleSeparateFilesEnabled()
 
     def selectFolderDialog(self):
         return QFileDialog.getExistingDirectory(self.tab2, "Select directory")
