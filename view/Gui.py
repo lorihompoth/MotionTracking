@@ -116,8 +116,8 @@ class Gui:
         self.hBoxLayout3.addWidget(self.label3)
         self.hBoxLayout3.addWidget(self.comboBox1)
         
-        checkButton9 = QCheckBox("Aim towards motion")
-        checkButton10 = QCheckBox("Aim with arrow keys")
+        self.checkButton9 = QCheckBox("Aim towards motion")
+        self.checkButton10 = QCheckBox("Aim with arrow keys")
         
         self.hBoxLayout4 = QHBoxLayout()
         self.label4 = QLabel("Blur value:")
@@ -160,6 +160,8 @@ class Gui:
         self.hBoxLayout8.addWidget(self.lineEdit6)
         
         self.vBoxLayout3.addLayout(self.hBoxLayout3)
+        self.vBoxLayout3.addWidget(self.checkButton9)
+        self.vBoxLayout3.addWidget(self.checkButton10)
         self.vBoxLayout3.addLayout(self.hBoxLayout4)
         self.vBoxLayout3.addLayout(self.hBoxLayout5)
         self.vBoxLayout3.addLayout(self.hBoxLayout6)
@@ -210,20 +212,44 @@ class Gui:
         self.__phase5 = self.checkBox7.isChecked()
         self.__recordVideo = self.checkBox8.isChecked()
         self.__destinationFolder = self.lineEdit.getText()
-        self.__putTimecode = self.
-        self.__fontSize = self.
-        self.__recordContinously = self.
-        self.__recordMovement = self.
-        self.__intoASingleFile = self.
-        self.__separateFiles = self.
-        self.__resolution = self.
-        self.__aimTowardsMotion = self.
-        self.__aimWithArrowKeys = self.
-        self.__blur = self.
-        self.__threshold = self.
-        self.__standbyBetweenMovements = self.
-        self.__cameraFieldOfView = self.
-        self.__minTrigger = self.
+        self.__putTimecode = self.checkBox9.isChecked()
+        self.__fontScale = self.spinBox1.getValue()
+        self.__recordContinously = self.radioButton1.isChecked()
+        self.__recordMovement = self.radioButton2.isChecked()
+        self.__intoASingleFile = self.radioButton3.isChecked()
+        self.__separateFiles = self.radioButton4.isChecked()
+        self.__resolution = self.comboBox1.currentText()
+        self.__aimTowardsMotion = self.checkButton9.isChecked()
+        self.__aimWithArrowKeys = self.checkButton10.isChecked()
+        self.__blur = self.lineEdit2.getText()
+        self.__threshold = self.lineEdit3.getText()
+        self.__standbyBetweenMovements = self.lineEdit4.getText()
+        self.__cameraFieldOfView = self.lineEdit5.getText()
+        self.__minTrigger = self.lineEdit6.getText()
+        print(        "preview): " + (str)(self.__preview))
+        print(        "finalScreen): " + (str)(self.__finalScreen))
+        print(        "phase1): " + (str)(self.__phase1))
+        print(        "phase2): " + (str)(self.__phase2))
+        print(        "phase3): " + (str)(self.__phase3))
+        print(        "phase4): " + (str)(self.__phase4))
+        print(        "phase5): " + (str)(self.__phase5))
+        print(        "recordVideo): " + (str)(self.__recordVideo))
+        print(        "destinationFolder): " + (str)(self.__destinationFolder))
+        print(        "putTimecode): " + (str)(self.__putTimecode))
+        print(        "fontScale): " + (str)(self.__fontScale))
+        print(        "recordContinously): " + (str)(self.__recordContinously))
+        print(        "recordMovement): " + (str)(self.__recordMovement))
+        print(        "intoASingleFile): " + (str)(self.__intoASingleFile))
+        print(        "separateFiles): " + (str)(self.__separateFiles))
+        print(        "resolution): " + (str)(self.__resolution))
+        print(        "aimTowardsMotion): " + (str)(self.__aimTowardsMotion))
+        print(        "aimWithArrowKeys): " + (str)(self.__aimWithArrowKeys))
+        print(        "blur): " + (str)(self.__blur))
+        print(        "threshold): " + (str)(self.__threshold))
+        print(        "standbyBetweenMovements): " + (str)(self.__standbyBetweenMovements))
+        print(        "cameraFieldOfView): " + (str)(self.__cameraFieldOfView))
+        print(        "minTrigger): " + (str)(self.__minTrigger))
+        
     
     def togglePreviewEnabled(self):
         newState = self.checkBox1.isChecked()
