@@ -1,6 +1,8 @@
-#from view.Gui import Gui
-#Gui()
-
+from view.Gui import Gui
+print("Gui started")
+Gui()
+print("gui terminated")
+'''
 
 from motionTracking.MotionTracking import MotionTracking
 from cameraFeed.Camera import Camera
@@ -25,3 +27,4 @@ while True:
         fps = 1/(time.time() - t)
         print("fps: " + str(int(fps)))
         t = time.time()
+'''
