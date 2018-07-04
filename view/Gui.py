@@ -258,7 +258,7 @@ class Gui:
         toggleRecordEnabled()
         toggleSeparateFilesEnabled()
 
-    def selectFolderDialog():
+    def selectFolderDialog(self):
         return QFileDialog.getExistingDirectory(self.tab2, "Select directory")
     
     def runApp(self):
