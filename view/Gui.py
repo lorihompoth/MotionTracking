@@ -211,7 +211,7 @@ class Gui:
         self.__phase4 = self.checkBox6.isChecked()
         self.__phase5 = self.checkBox7.isChecked()
         self.__recordVideo = self.checkBox8.isChecked()
-        self.__destinationFolder = self.lineEdit.getText()
+        self.__destinationFolder = self.lineEdit1.getText()
         self.__putTimecode = self.checkBox9.isChecked()
         self.__fontScale = self.spinBox1.getValue()
         self.__recordContinously = self.radioButton1.isChecked()
