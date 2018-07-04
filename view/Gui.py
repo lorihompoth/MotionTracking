@@ -96,6 +96,7 @@ class Gui:
         self.vBoxLayout2.addWidget(self.checkBox8)
         self.vBoxLayout2.addWidget(self.label1)
         self.vBoxLayout2.addLayout(self.hBoxLayout1)
+        self.vBoxLayout2.addWidget(self.checkBox9)
         self.vBoxLayout2.addLayout(self.hBoxLayout2)
         self.vBoxLayout2.addWidget(self.radioButton1)
         self.vBoxLayout2.addWidget(self.radioButton2)
@@ -200,29 +201,29 @@ class Gui:
         self.tabs.setWindowTitle('Motion Tracking')
 
     def startButtonClicked(self):
-        self.__preview = None
-        self.__finalScreen = None
-        self.__phase1 = None
-        self.__phase2 = None
-        self.__phase3 = None
-        self.__phase4 = None
-        self.__phase5 = None
-        self.__recordVideo = None
-        self.__destinationFolder = None
-        self.__putTimecode = None
-        self.__fontSize = None
-        self.__recordContinously = None
-        self.__recordMovement = None
-        self.__intoASingleFile = None
-        self.__separateFiles = None
-        self.__resolution = None
-        self.__aimTowardsMotion = None
-        self.__aimWithArrowKeys = None
-        self.__blur = None
-        self.__threshold = None
-        self.__standbyBetweenMovements = None
-        self.__cameraFieldOfView = None
-        self.__minTrigger = None
+        self.__preview = self.checkBox1.isChecked()
+        self.__finalScreen = self.checkBox2.isChecked()
+        self.__phase1 = self.checkBox3.isChecked()
+        self.__phase2 = self.checkBox4.isChecked()
+        self.__phase3 = self.checkBox5.isChecked()
+        self.__phase4 = self.checkBox6.isChecked()
+        self.__phase5 = self.checkBox7.isChecked()
+        self.__recordVideo = self.checkBox8.isChecked()
+        self.__destinationFolder = self.lineEdit.getText()
+        self.__putTimecode = self.
+        self.__fontSize = self.
+        self.__recordContinously = self.
+        self.__recordMovement = self.
+        self.__intoASingleFile = self.
+        self.__separateFiles = self.
+        self.__resolution = self.
+        self.__aimTowardsMotion = self.
+        self.__aimWithArrowKeys = self.
+        self.__blur = self.
+        self.__threshold = self.
+        self.__standbyBetweenMovements = self.
+        self.__cameraFieldOfView = self.
+        self.__minTrigger = self.
     
     def togglePreviewEnabled(self):
         newState = self.checkBox1.isChecked()
@@ -251,17 +252,24 @@ class Gui:
         self.radioButton4.setEnabled(newState)
         self.toggleSeparateFilesEnabled()
 
+    def toggleTimecodeEnabled(self):
+        newState = self.checkBox9.isChecked()
+        self.spinBox1.setEnabled(newState)
+
     def connectHandlers(self):
         self.checkBox1.clicked.connect(self.togglePreviewEnabled)
         self.checkBox8.clicked.connect(self.toggleRecordEnabled)
         self.radioButton1.clicked.connect(self.toggleSeparateFilesEnabled)
         self.radioButton2.clicked.connect(self.toggleSeparateFilesEnabled)
-        self.togglePreviewEnabled()
+        self.checkBox9.clicked.connect(self.toggleTimecodeEnabled())
+        self.togglePreviewEnabled()1
         self.toggleRecordEnabled()
         self.toggleSeparateFilesEnabled()
+        self.toggleTimecodeEnabled()
 
     def selectFolderDialog(self):
-        return QFileDialog.getExistingDirectory(self.tab2, "Select directory")
+        filename = QFileDialog.getExistingDirectory(self.tab2, "Select directory")
+        self.lineEdit1.setText(filename)
     
     def runApp(self):
         '''
