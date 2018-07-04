@@ -62,7 +62,7 @@ class Gui:
         self.hBoxLayout1.addWidget(self.lineEdit1)
         self.hBoxLayout1.addWidget(self.pushButton1)
         
-        self.pushButton1.clicked.connect(selectFolderDialog)
+        self.pushButton1.clicked.connect(self.selectFolderDialog)
         self.checkBox9 = QCheckBox("Put timecode on video")
         
         self.hBoxLayout2 = QHBoxLayout()
@@ -195,7 +195,7 @@ class Gui:
         self.tabs.addTab(self.tab2,"Recording")
         self.tabs.addTab(self.tab3,"Advanced")
         
-        tabs.setWindowTitle('Motion Tracking')
+        self.tabs.setWindowTitle('Motion Tracking')
 
     def startButtonClicked(self):
         self.__preview = None
