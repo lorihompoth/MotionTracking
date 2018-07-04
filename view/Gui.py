@@ -226,29 +226,7 @@ class Gui:
         self.__standbyBetweenMovements = int(self.lineEdit4.text())
         self.__cameraFieldOfView = int(self.lineEdit5.text())
         self.__minTrigger = int(self.lineEdit6.text())
-        print(        "preview): " + (str)(self.__preview))
-        print(        "finalScreen): " + (str)(self.__finalScreen))
-        print(        "phase1): " + (str)(self.__phase1))
-        print(        "phase2): " + (str)(self.__phase2))
-        print(        "phase3): " + (str)(self.__phase3))
-        print(        "phase4): " + (str)(self.__phase4))
-        print(        "phase5): " + (str)(self.__phase5))
-        print(        "recordVideo): " + (str)(self.__recordVideo))
-        print(        "destinationFolder): " + (str)(self.__destinationFolder))
-        print(        "putTimecode): " + (str)(self.__putTimecode))
-        print(        "fontScale): " + (str)(self.__fontScale))
-        print(        "recordContinously): " + (str)(self.__recordContinously))
-        print(        "recordMovement): " + (str)(self.__recordMovement))
-        print(        "intoASingleFile): " + (str)(self.__intoASingleFile))
-        print(        "separateFiles): " + (str)(self.__separateFiles))
-        print(        "resolution): " + (str)(self.__resolution))
-        print(        "aimTowardsMotion): " + (str)(self.__aimTowardsMotion))
-        print(        "aimWithArrowKeys): " + (str)(self.__aimWithArrowKeys))
-        print(        "blur): " + (str)(self.__blur))
-        print(        "threshold): " + (str)(self.__threshold))
-        print(        "standbyBetweenMovements): " + (str)(self.__standbyBetweenMovements))
-        print(        "cameraFieldOfView): " + (str)(self.__cameraFieldOfView))
-        print(        "minTrigger): " + (str)(self.__minTrigger))
+        self.tabs.hide()
         
     
     def togglePreviewEnabled(self):
@@ -303,7 +281,7 @@ class Gui:
         self.lineEdit1.setText(filename)
     
     def runApp(self):
-        '''
+        
         WIDTH = 432
         HEIGHT = 368
         FRAMERATE = 20
@@ -319,6 +297,6 @@ class Gui:
                 fps = 1/(time.time() - t)
                 print("fps: " + str(int(fps)))
                 t = time.time()
-    '''
+    
 
 
