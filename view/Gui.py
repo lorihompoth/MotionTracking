@@ -68,15 +68,15 @@ class Gui:
         FRAMERATE = 20
         ROTATION = 180
         camFeed = CameraFeed(WIDTH, HEIGHT, ROTATION, FRAMERATE)
-        print(self.__destinationFolder[7:])
-        mt = MotionTracking(camFeed, self.__destinationFolder[7:])
+        #print(self.__destinationFolder[7:])
+        mt = MotionTracking(camFeed, self.__destinationFolder)
         t = time.time()
         while True:
             image = mt.getFinal()
             if image is not None:
                 #cv2.imshow("asd", image)
                 fps = 1/(time.time() - t)
-                #print("fps: " + str(int(fps)))
+                print("fps: " + str(int(fps)))
                 t = time.time()
 
 
