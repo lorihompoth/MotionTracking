@@ -13,6 +13,7 @@ from PyQt4.QtGui import *
 class Gui:
     def __init__(self):
         self.initializeGUI()
+        self.connectHandlers()
         self.tabs.show()
         sys.exit(self.app.exec_()) 
         
