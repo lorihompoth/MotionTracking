@@ -44,9 +44,10 @@ class Camera(threading.Thread):
     def run(self):
         #p = Preview(self.__cam)
         #p.start()
-        
+        print("camera run started")
         i = 0
         for frame in self.__cam.capture_continuous(self.__rawCapture, format="bgr", use_video_port=True):
+            print("camera for iteration")
             image = frame.array
             #cv2.imshow("camera", frame.array)
             with self.__cv:
