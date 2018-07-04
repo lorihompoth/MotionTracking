@@ -278,6 +278,7 @@ class Gui:
         self.radioButton3.setEnabled(newState)
         self.radioButton4.setEnabled(newState)
         self.toggleSeparateFilesEnabled()
+        self.toggleTimecodeEnabled()
 
     def toggleTimecodeEnabled(self):
         newState = self.checkBox9.isChecked()
