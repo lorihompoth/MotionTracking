@@ -1,18 +1,19 @@
-'''
+
 from motionTracking.MotionTracking import MotionTracking
 from cameraFeed.Camera import Camera
 from cameraFeed.CameraFeed import CameraFeed
 import cv2
 import time
 from threading import Thread
-'''
-import sys
+import thread
+
+import sys # for gui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 class Gui:
     def __init__(self):
-        self.initializeGUI()
+        self.initializeGUI()               
         self.connectHandlers()
         self.tabs.show()
         sys.exit(self.app.exec_()) 
@@ -226,7 +227,10 @@ class Gui:
         self.__standbyBetweenMovements = int(self.lineEdit4.text())
         self.__cameraFieldOfView = int(self.lineEdit5.text())
         self.__minTrigger = int(self.lineEdit6.text())
-        self.tabs.hide()
+        #self.tabs.close()
+        thread.start_new_thread(self.runApp, ())
+        self.app.closeAllWindows()
+        #self.runApp()
         
     
     def togglePreviewEnabled(self):
@@ -287,13 +291,12 @@ class Gui:
         FRAMERATE = 20
         ROTATION = 180
         camFeed = CameraFeed(WIDTH, HEIGHT, ROTATION, FRAMERATE)
-        #print(self.__destinationFolder[7:])
-        mt = MotionTracking(camFeed, self.__destinationFolder)
+        mt = MotionTracking(camFeed, "")
         t = time.time()
         while True:
             image = mt.getFinal()
             if image is not None:
-                #cv2.imshow("asd", image)
+                cv2.imshow("asd", image)
                 fps = 1/(time.time() - t)
                 print("fps: " + str(int(fps)))
                 t = time.time()

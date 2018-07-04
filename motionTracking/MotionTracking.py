@@ -36,7 +36,7 @@ class MotionTracking:
         self.__mechanics.moveToMiddle()
 
         self.__path = path
-        self.__recordVideo = RecordVideo(self.__path, self.__WIDTH, self.__HEIGHT)
+        #self.__recordVideo = RecordVideo(self.__path, self.__WIDTH, self.__HEIGHT)
 
 
     def getFinal(self):
@@ -88,7 +88,7 @@ class MotionTracking:
                 #print("mt.getFinal/__mechanicsProceed finished")
 
         self.__frameCount += 1
-        self.__recordVideo.addFrame(self.__finalImg)
+        #self.__recordVideo.addFrame(self.__finalImg)
         return self.__finalImg
 
     def __blackAndWhite(self, image):

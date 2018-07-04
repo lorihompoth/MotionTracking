@@ -42,7 +42,7 @@ class Camera(threading.Thread):
         return self.__savedFrame
 
     def run(self):
-        p = Preview(self.__cam)
+        #p = Preview(self.__cam)
         #p.start()
         
         i = 0
@@ -53,6 +53,7 @@ class Camera(threading.Thread):
                 #print("camera with cv")
                 self.__savedFrame = image
                 self.__isAvailable = True
+                print("camera has a new frame ready")
                 self.__cv.notify()
 
             key = cv2.waitKey(1) & 0xFF
