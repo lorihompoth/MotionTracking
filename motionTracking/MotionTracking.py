@@ -26,6 +26,7 @@ class MotionTracking:
         self.__videoRecorder = None
         self.__frameCount = 0
         self.__blackImage = np.zeros((self.__HEIGHT, self.__WIDTH, 3), np.uint8)
+        self.__lastMovementFrame = 0
 
         #print("mt.constructor/constants done")
 
@@ -66,12 +67,11 @@ class MotionTracking:
         self.__phase3 = self.__binarizeOtsu(self.__phase2)
         #print("mt.getFinal/binarizeOtsu Finished")
 
-
+        movementDetected = False
         if self.__phase3 is None:
             self.__phase3 = self.__blackImage
             self.__phase4 = self.__blackImage
             self.__phase5 = self.__blackImage
-            movementDetected = False
         else:
             movementDetected = True
             #print("mt.getFinal/__blur")
@@ -90,6 +90,8 @@ class MotionTracking:
                 #print("mt.getFinal/__mechanicsProceed finished")
 
         self.__frameCount += 1
+        if self.__frameCount - self.__lastMovementFrame < 10:
+            movementDetected = True
         if self.__videoRecorder is not None: self.__videoRecorder.addFrame(self.__finalImg, movementDetected)
         return self.__finalImg
 
