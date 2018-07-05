@@ -16,6 +16,7 @@ class RecordVideo:
         self.__heigth = 368
 
     def startFile(self):
+        self.__started = True
         print("starting file")
         self.__ts = time.time()
         filename = str(datetime.datetime.fromtimestamp(self.__ts).strftime('%Y-%m-%d-%H-%M-%S') + ".avi")
@@ -32,7 +33,6 @@ class RecordVideo:
             if not movement:
                 if self.__separateFiles and self.__started:
                     self.finish()
-                    self.__started = False
             else:
                 if not self.__started:
                     self.startFile()
@@ -60,6 +60,7 @@ class RecordVideo:
         return image
 
     def finish(self):
+        self.__started = False
         print("finishing file")
         self.__out.release()
         
