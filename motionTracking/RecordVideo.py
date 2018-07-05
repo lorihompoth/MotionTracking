@@ -10,13 +10,13 @@ class RecordVideo:
         self.__recordMovementOnly = True
         self.__separateFiles = True
         self.__started = False
-        ts = time.time()
+        self.__ts = time.time()
         self.__i = 0
         self.__width = 432
         self.__height = 368
 
     def startFile(self):
-        filename = str(datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d-%H-%M-%S')) + ".avi"
+        filename = str(datetime.datetime.fromtimestamp(self.__ts).strftime('%Y-%m-%d-%H-%M-%S')) + ".avi"
         self.__out = cv2.VideoWriter(filename, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (width, heigth))
         
     def __recordFrame(self, image):
