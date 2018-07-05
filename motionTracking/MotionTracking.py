@@ -22,6 +22,7 @@ class MotionTracking:
         self.__STANDBY_AFTER_MOVE_MILLIS = 460
         self.__centerX = self.__WIDTH / 2
         self.__centerY = self.__HEIGHT / 2
+        self.__aimTowardsMotion = True
         self.__frameCount = 0
         self.__blackImage = np.zeros((self.__HEIGHT, self.__WIDTH, 3), np.uint8)
 
@@ -164,6 +165,8 @@ class MotionTracking:
         return centroids[closest]
 
     def __mechanicsProceed(self, closest):
+        if not self.__aimTowardsMotion:
+            return
         horizontalDiff = self.__centerX - closest[0]  # in pixels
         verticalDiff = self.__centerY - closest[1]
 
