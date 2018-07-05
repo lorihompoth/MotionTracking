@@ -1,4 +1,4 @@
-
+'''
 from motionTracking.MotionTracking import MotionTracking
 from cameraFeed.Camera import Camera
 from cameraFeed.CameraFeed import CameraFeed
@@ -7,6 +7,7 @@ import time
 from threading import Thread
 import thread
 import socket 
+'''
 import sys # for gui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
