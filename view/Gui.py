@@ -127,7 +127,7 @@ class Gui:
         self.label5 = QLabel("Noise threshold:")
         self.lineEdit3 = QLineEdit()
         self.lineEdit3.setValidator(QIntValidator())
-        self.lineEdit3.setText("20")
+        self.lineEdit3.setText("14")
         self.hBoxLayout5.addWidget(self.label5)
         self.hBoxLayout5.addWidget(self.lineEdit3)
         
@@ -151,7 +151,7 @@ class Gui:
         self.label8 = QLabel("Movement trigger angular diff:")
         self.lineEdit6 = QLineEdit()
         self.lineEdit6.setValidator(QIntValidator())
-        self.lineEdit6.setText("75")
+        self.lineEdit6.setText("70")
         self.hBoxLayout8.addWidget(self.label8)
         self.hBoxLayout8.addWidget(self.lineEdit6)
         
@@ -221,9 +221,7 @@ class Gui:
         self.configurables["destinationFolder"] =  str(self.lineEdit1.text())
         self.configurables["putTimecode"] =  self.checkBox9.isChecked()
         self.configurables["fontScale"] =  int(self.spinBox1.value())
-        self.configurables["recordContinously"] =  self.radioButton1.isChecked()
-        self.configurables["recordMovement"] =  self.radioButton2.isChecked()
-        self.configurables["intoASingleFile"] =  self.radioButton3.isChecked()
+        self.configurables["recordMovementOnly"] =  self.radioButton2.isChecked()
         self.configurables["separateFiles"] =  self.radioButton4.isChecked()
         self.configurables["resolution"] =  str(self.comboBox1.currentText())
         self.configurables["aimTowardsMotion"] =  self.checkButton9.isChecked()
@@ -285,22 +283,6 @@ class Gui:
         filename = QFileDialog.getExistingDirectory(self.tab2, "Select directory")
         self.lineEdit1.setText(filename)
     
-    def runApp(self):
-        
-        WIDTH = 432
-        HEIGHT = 368
-        FRAMERATE = 20
-        ROTATION = 180
-        camFeed = CameraFeed(WIDTH, HEIGHT, ROTATION, FRAMERATE)
-        mt = MotionTracking(camFeed, "")
-        t = time.time()
-        while True:
-            image = mt.getFinal()
-            if image is not None:
-                cv2.imshow("asd", image)
-                fps = 1/(time.time() - t)
-                print("fps: " + str(int(fps)))
-                t = time.time()
     
 Gui()
 

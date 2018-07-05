@@ -7,7 +7,7 @@ import mechanics
 from motionTracking.RecordVideo import RecordVideo
 
 class MotionTracking:
-    def __init__(self, cameraFeed, path):
+    def __init__(self, cameraFeed = CameraFeed()):
         #print("mt.constructor/started")
         self.__cameraFeed = cameraFeed
         self.__mechanics = mechanics
@@ -35,8 +35,8 @@ class MotionTracking:
         self.__moveRestrictionStart = time.time()
         self.__mechanics.moveToMiddle()
 
-        self.__path = path
-        #self.__recordVideo = RecordVideo(self.__path, self.__WIDTH, self.__HEIGHT)
+        self.__destinationFolder = ""
+        #self.__recordVideo = RecordVideo(self.__destinationFolder, self.__WIDTH, self.__HEIGHT)
 
 
     def getFinal(self):
@@ -115,7 +115,6 @@ class MotionTracking:
     def __isMoveForbidden(self):
         return not time.time() - self.__moveRestrictionStart > self.__STANDBY_AFTER_MOVE_MILLIS / 1000.0
 
-
     def __getClosestToCenter(self, centroids):
         minDistance = float("inf")
         closestCentroid = None
@@ -134,7 +133,6 @@ class MotionTracking:
                 minDistance = distance
 
         return closestCentroid
-
 
     def __pointOutMovingSpots(self, image, originalImage):
         connectivity = 8
@@ -184,3 +182,27 @@ class MotionTracking:
             else:
                 mechanics.move("DOWN", -verticalAngleDiff)
                 self.__moveRestrictionStart = time.time()
+
+    def setResolution(self, width, height):
+        self.__WIDTH = width
+        self.__HEIGHT = height
+        self.__centerX = self.__WIDTH / 2
+        self.__centerY = self.__HEIGHT / 2
+        self.__blackImage = np.zeros((self.__HEIGHT, self.__WIDTH, 3), np.uint8)
+        
+    
+    def setAimTowardsMotion(self, aimTowardsMotion):
+        self.__aimTowardsMotion = aimTowardsMotion
+    def setAimWithArrowKeys(self, aimWithArrowKeys):
+        self.__aimWithArrowKeys = aimWithArrowKeys
+    def setBlur(self, blur):
+        self.__blur = blur
+        self.__BLUR_SQUARED = self.__BLUR * self.__BLUR
+    def setThreshold(self, threshold):
+        self.__threshold = threshold
+    def setStandbyBetweenMovements(self, standbyBetweenMovements):
+        self.__standbyBetweenMovements = standbyBetweenMovements
+    def setCameraFieldOfView(self, cameraFieldOfView):
+        self.__cameraFieldOfView = cameraFieldOfView
+    def setMinTrigger(self, minTrigger):
+        self.__minTrigger = minTrigger

@@ -11,23 +11,32 @@ def receiveConfigurables():
     serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     serversocket.bind(('localhost', 8089))
     serversocket.listen(1)
-
     connection, address = serversocket.accept()
     buf = connection.recv(4096)
-    if len(buf) > 0:
-        print buf
     serversocket.close()
+    
     return ast.literal_eval(buf)
 
 
 configurables = receiveConfigurables()
-print(configurables)
-WIDTH = 432
-HEIGHT = 368
-FRAMERATE = 20
-ROTATION = 180
-camFeed = CameraFeed(WIDTH, HEIGHT, ROTATION, FRAMERATE)
-mt = MotionTracking(camFeed, None)
+
+resolution = configurables["resolution"].split()
+WIDTH = int(resolution[0])
+HEIGHT = int(resolution[2])
+camFeed = CameraFeed()
+camFeed.setResolution(WIDTH, HEIGHT)
+camFeed.setRotation(180)
+mt.setResolution(WIDTH, HEIGHT)
+mt = MotionTracking(camFeed)
+mt.setAimTowardsMotion(configurables["aimTowardsMotion"])
+mt.setAimWithArrowKeys(configurable["aimWithArrowKeys"])
+mt.setBlur(configurable["blur"])
+mt.setThreshold(configurable["threshold"])
+mt.setStandbyBetweenMovements(configurable["standbyBetweenMovements"])
+mt.setCameraFieldOfView(configurable["cameraFieldOfView"])
+mt.setMinTrigger(configurable["minTrigger"])
+
+
 t = time.time()
 while True:
     input("type a number: ")
