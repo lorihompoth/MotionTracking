@@ -64,7 +64,9 @@ mt.setThreshold(configurables["threshold"])
 mt.setStandbyBetweenMovements(configurables["standbyBetweenMovements"])
 mt.setCameraFieldOfView(configurables["cameraFieldOfView"])
 mt.setMinTrigger(configurables["minTrigger"])
-mt.setVideoRecorder(getVideoRecorder(configurables))
+recorder = getVideoRecorder(configurables)
+recorder.setResolution(WIDTH, HEIGHT)
+mt.setVideoRecorder(recorder)
 
 t = time.time()
 while True:
