@@ -46,14 +46,14 @@ class Camera(threading.Thread):
         print("camera run started")
         i = 0
         for frame in self.__cam.capture_continuous(self.__rawCapture, format="bgr", use_video_port=True):
-            print("camera for iteration")
+            #print("camera for iteration")
             image = frame.array
             #cv2.imshow("camera", frame.array)
             with self.__cv:
                 #print("camera with cv")
                 self.__savedFrame = image
                 self.__isAvailable = True
-                print("camera has a new frame ready")
+                #print("camera has a new frame ready")
                 self.__cv.notify()
 
             key = cv2.waitKey(1) & 0xFF
@@ -62,7 +62,7 @@ class Camera(threading.Thread):
 
     def setResolution(self, width, height):
         self.__width = width
-        selg.__height = height
+        self.__height = height
     def setFramerate(self, framerate):
         self.__framerate = framerate
     def setRotation(self, rotation):

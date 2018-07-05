@@ -7,7 +7,7 @@ import mechanics
 from motionTracking.RecordVideo import RecordVideo
 
 class MotionTracking:
-    def __init__(self, cameraFeed = CameraFeed()):
+    def __init__(self, cameraFeed):
         #print("mt.constructor/started")
         self.__cameraFeed = cameraFeed
         self.__mechanics = mechanics
@@ -196,7 +196,7 @@ class MotionTracking:
     def setAimWithArrowKeys(self, aimWithArrowKeys):
         self.__aimWithArrowKeys = aimWithArrowKeys
     def setBlur(self, blur):
-        self.__blur = blur
+        self.__BLUR = blur
         self.__BLUR_SQUARED = self.__BLUR * self.__BLUR
     def setThreshold(self, threshold):
         self.__threshold = threshold
