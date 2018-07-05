@@ -6,13 +6,14 @@ import cv2
 import time
 from threading import Thread
 import thread
-
+import socket 
 import sys # for gui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 class Gui:
     def __init__(self):
+        self.configurables = {}
         self.initializeGUI()               
         self.connectHandlers()
         self.tabs.show()
@@ -204,34 +205,40 @@ class Gui:
         self.tabs.setWindowTitle('Motion Tracking')
 
     def startButtonClicked(self):
-        self.__preview = self.checkBox1.isChecked()
-        self.__finalScreen = self.checkBox2.isChecked()
-        self.__phase1 = self.checkBox3.isChecked()
-        self.__phase2 = self.checkBox4.isChecked()
-        self.__phase3 = self.checkBox5.isChecked()
-        self.__phase4 = self.checkBox6.isChecked()
-        self.__phase5 = self.checkBox7.isChecked()
-        self.__recordVideo = self.checkBox8.isChecked()
-        self.__destinationFolder = str(self.lineEdit1.text())
-        self.__putTimecode = self.checkBox9.isChecked()
-        self.__fontScale = int(self.spinBox1.value())
-        self.__recordContinously = self.radioButton1.isChecked()
-        self.__recordMovement = self.radioButton2.isChecked()
-        self.__intoASingleFile = self.radioButton3.isChecked()
-        self.__separateFiles = self.radioButton4.isChecked()
-        self.__resolution = str(self.comboBox1.currentText())
-        self.__aimTowardsMotion = self.checkButton9.isChecked()
-        self.__aimWithArrowKeys = self.checkButton10.isChecked()
-        self.__blur = int(self.lineEdit2.text())
-        self.__threshold = int(self.lineEdit3.text())
-        self.__standbyBetweenMovements = int(self.lineEdit4.text())
-        self.__cameraFieldOfView = int(self.lineEdit5.text())
-        self.__minTrigger = int(self.lineEdit6.text())
-        #self.tabs.close()
-        thread.start_new_thread(self.runApp, ())
+        self.readConfigurables()
+        self.sendConfigurables()
         self.app.closeAllWindows()
         #self.runApp()
         
+    def sendConfigurables(self):
+        clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        clientsocket.connect(('localhost', 8089))
+        clientsocket.send(str(self.configurables))
+
+    def readConfigurables(self):
+        self.configurables[preview] =  self.checkBox1.isChecked()
+        self.configurables[finalScreen] =  self.checkBox2.isChecked()
+        self.configurables[phase1] =  self.checkBox3.isChecked()
+        self.configurables[phase2] =  self.checkBox4.isChecked()
+        self.configurables[phase3] =  self.checkBox5.isChecked()
+        self.configurables[phase4] =  self.checkBox6.isChecked()
+        self.configurables[phase5] =  self.checkBox7.isChecked()
+        self.configurables[recordVideo] =  self.checkBox8.isChecked()
+        self.configurables[destinationFolder] =  str(self.lineEdit1.text())
+        self.configurables[putTimecode] =  self.checkBox9.isChecked()
+        self.configurables[fontScale] =  int(self.spinBox1.value())
+        self.configurables[recordContinously] =  self.radioButton1.isChecked()
+        self.configurables[recordMovement] =  self.radioButton2.isChecked()
+        self.configurables[intoASingleFile] =  self.radioButton3.isChecked()
+        self.configurables[separateFiles] =  self.radioButton4.isChecked()
+        self.configurables[resolution] =  str(self.comboBox1.currentText())
+        self.configurables[aimTowardsMotion] =  self.checkButton9.isChecked()
+        self.configurables[aimWithArrowKeys] =  self.checkButton10.isChecked()
+        self.configurables[blur] =  int(self.lineEdit2.text())
+        self.configurables[threshold] =  int(self.lineEdit3.text())
+        self.configurables[standbyBetweenMovements] =  int(self.lineEdit4.text())
+        self.configurables[cameraFieldOfView] =  int(self.lineEdit5.text())
+        self.configurables[minTrigger] =  int(self.lineEdit6.text())
     
     def togglePreviewEnabled(self):
         newState = self.checkBox1.isChecked()
