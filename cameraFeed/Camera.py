@@ -56,7 +56,7 @@ class Camera(threading.Thread):
                 #print("camera has a new frame ready")
                 self.__cv.notify()
 
-            key = cv2.waitKey(1) & 0xFF
+            #key = cv2.waitKey(1) & 0xFF
             self.__rawCapture.truncate(0)
             i += 1
 

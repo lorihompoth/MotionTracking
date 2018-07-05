@@ -13,6 +13,7 @@ def receiveConfigurables():
     serversocket.listen(1)
     connection, address = serversocket.accept()
     buf = connection.recv(4096)
+    time.sleep(1)
     serversocket.close()
     
     return ast.literal_eval(buf)
@@ -43,6 +44,7 @@ while True:
     image = mt.getFinal()
     if image is not None:
         cv2.imshow("asd", image)
+        cv2.waitKey(1)
         fps = 1/(time.time() - t)
         #print("fps: " + str(int(fps)))
 
