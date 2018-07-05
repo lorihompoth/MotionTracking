@@ -87,7 +87,7 @@ class MotionTracking:
                 #print("mt.getFinal/__mechanicsProceed finished")
 
         self.__frameCount += 1
-        if self.__videoRecorder is not None: self.__recordVideo.addFrame(self.__finalImg)
+        if self.__videoRecorder is not None: self.__videoRecorder.addFrame(self.__finalImg)
         return self.__finalImg
 
     def __blackAndWhite(self, image):
