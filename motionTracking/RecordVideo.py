@@ -16,12 +16,14 @@ class RecordVideo:
         self.__heigth = 368
 
     def startFile(self):
-		print("starting file")
+        print("starting file")
+        self.__ts = time.time()
         filename = str(datetime.datetime.fromtimestamp(self.__ts).strftime('%Y-%m-%d-%H-%M-%S') + ".avi")
         self.__out = cv2.VideoWriter(filename, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (self.__width, self.__heigth))
+        pass
         
     def __recordFrame(self, image):
-		print("recording frame")
+        print("saving frame")
         image = self.timeCode(image)
         self.__out.write(image)
 
@@ -58,7 +60,7 @@ class RecordVideo:
         return image
 
     def finish(self):
-		print("finishing file")
+        print("finishing file")
         self.__out.release()
         
     def setDestinationFolder(self, destinationFolder):
