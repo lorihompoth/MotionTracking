@@ -39,11 +39,11 @@ def imageToDisplay(configurables, mt):
         
 def getVideoRecorder(configurables):
     videoRecorder = RecordVideo()
-    videoRecoder.setDestinationFolder(configurables["destinationFolder"])
-    videoRecoder.setPutTimecode(configurables["putTimecode"])    
-    videoRecoder.setFontScale(configurables["fontScale"])
-    videoRecoder.setRecordMovementOnly(configurables["recordMovementOnly"])
-    videoRecoder.setSeparateFiles(configurables["separateFiles"])
+    videoRecorder.setDestinationFolder(configurables["destinationFolder"])
+    videoRecorder.setPutTimecode(configurables["putTimecode"])    
+    videoRecorder.setFontScale(configurables["fontScale"])
+    videoRecorder.setRecordMovementOnly(configurables["recordMovementOnly"])
+    videoRecorder.setSeparateFiles(configurables["separateFiles"])
     return videoRecorder
 
 configurables = receiveConfigurables()
