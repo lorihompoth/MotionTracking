@@ -9,7 +9,7 @@ elif sys.argv[1] == "0":
     with Gui() as g:
         pass
     print("gui terminated")
-elif sys.argv[2] == "1":
+elif sys.argv[1] == "1":
     from motionTracking.MotionTracking import MotionTracking
     from cameraFeed.Camera import Camera
     from cameraFeed.CameraFeed import CameraFeed
