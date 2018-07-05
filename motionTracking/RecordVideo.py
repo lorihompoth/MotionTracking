@@ -25,6 +25,9 @@ class RecordVideo:
         
     def __recordFrame(self, image):
         print("saving frame")
+        if image is None:
+            print("Image is none")
+            return
         image = self.timeCode(image)
         self.__out.write(image)
 

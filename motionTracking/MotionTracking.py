@@ -89,7 +89,7 @@ class MotionTracking:
                 #print("mt.getFinal/__mechanicsProceed finished")
 
         self.__frameCount += 1
-        movementDetected = self.__frameCount - self.__lastMovementFrame < 10
+        movementDetected = self.__frameCount - self.__lastMovementFrame < 100
         if self.__videoRecorder is not None: self.__videoRecorder.addFrame(self.__finalImg, movementDetected)
         return self.__finalImg
 
