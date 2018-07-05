@@ -20,10 +20,11 @@ def receiveConfigurables():
 
 def imageToDisplay(configurables, mt):
     images = {}
+    finalImage = mt.getFinal()
     if not configurables["preview"]:
         return images
     if configurables["finalScreen"]:
-        images["Final Screen"] = mt.getFinal()
+        images["Final Screen"] = finalImage
     if configurables["phase1"]:
         images["Phase 1"] = mt.getPhase1()
     if configurables["phase2"]:
