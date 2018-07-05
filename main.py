@@ -1,6 +1,7 @@
 from motionTracking.MotionTracking import MotionTracking
 from cameraFeed.Camera import Camera
 from cameraFeed.CameraFeed import CameraFeed
+from motionTracking.RecordVideo import RecordVideo
 import cv2
 import time
 import socket
