@@ -9,21 +9,51 @@ class RecordVideo:
         self.__fontScale = 1
         self.__recordMovementOnly = True
         self.__separateFiles = True
+        self.__started = False
         ts = time.time()
+        self.__i = 0
+        self.__width = 432
+        self.__height = 368
+
+    def startFile(self):
         filename = str(datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d-%H-%M-%S')) + ".avi"
         self.__out = cv2.VideoWriter(filename, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (width, heigth))
-        self.__i = 0
+        
+    def __recordFrame(self, image):
+        image = self.timeCode(image)
+        self.__out.write(image)
 
     def addFrame(self, image, movement):
-        if movement:
-            pass
-        if image is not None and self.__i < 300:
-            self.__out.write(image)
-            self.__i += 1
-        if self.__i == 300:
-            self.finish()
+        if self.__recordMovementOnly:
+            if not movement:
+                if self.__separateFiles and self.__started:
+                    self.finish()
+                    self.__started = False
+            else:
+                if not self.__started:
+                    self.startFile()
+                self.__recordFrame
+        else:
+            if not self.__started:
+                self.startFile()
+            self.__recordFrame    
 
-
+    def timeCode(self, image):
+        if not self.__putTimecode:
+            return image
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        lineType = 2
+        position = (100,100)
+        fontColor = (255,255,255)
+        #position = (self.__width, self.__height)
+        text = str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')) 
+        cv2.putText(image, text,
+                    coordinates,
+                    font,
+                    self.__fontScale,
+                    fontColor,
+                    lineType)
+        return image
 
     def finish(self):
         self.__out.release()
@@ -38,3 +68,7 @@ class RecordVideo:
         self.__recordMovementOnly = recordMovementOnly
     def setSeparateFiles(self, separateFiles):
         self.__separateFiles = separateFiles
+    def setResolution(self, width, height):
+        if not self.__started:
+            self.__width = width
+            self.__height = height

@@ -23,6 +23,7 @@ class MotionTracking:
         self.__centerX = self.__WIDTH / 2
         self.__centerY = self.__HEIGHT / 2
         self.__aimTowardsMotion = True
+        self.__videoRecorder = None
         self.__frameCount = 0
         self.__blackImage = np.zeros((self.__HEIGHT, self.__WIDTH, 3), np.uint8)
 
@@ -35,9 +36,6 @@ class MotionTracking:
         #cv2.imshow("1prev", self.__phase1Prev)
         self.__moveRestrictionStart = time.time()
         self.__mechanics.moveToMiddle()
-
-        self.__destinationFolder = ""
-        #self.__recordVideo = RecordVideo(self.__destinationFolder, self.__WIDTH, self.__HEIGHT)
 
 
     def getFinal(self):
@@ -89,7 +87,7 @@ class MotionTracking:
                 #print("mt.getFinal/__mechanicsProceed finished")
 
         self.__frameCount += 1
-        #self.__recordVideo.addFrame(self.__finalImg)
+        if self.__videoRecorder is not None: self.__recordVideo.addFrame(self.__finalImg)
         return self.__finalImg
 
     def __blackAndWhite(self, image):
@@ -219,3 +217,5 @@ class MotionTracking:
         self.__cameraFieldOfView = cameraFieldOfView
     def setMinTrigger(self, minTrigger):
         self.__minTrigger = minTrigger
+    def setVideoRecorder(self, recorder):
+        self.__videoRecorder = recorder

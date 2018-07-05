@@ -13,7 +13,6 @@ def receiveConfigurables():
     serversocket.listen(1)
     connection, address = serversocket.accept()
     buf = connection.recv(4096)
-    time.sleep(1)
     serversocket.close()
     
     return ast.literal_eval(buf)
@@ -37,6 +36,15 @@ def imageToDisplay(configurables, mt):
         images["Phase 5"] = mt.getPhase5()
     return images
         
+def getVideoRecorder(configurables):
+    videoRecorder = RecordVideo()
+    videoRecoder.setDestinationFolder(configurables["destinationFolder"])
+    videoRecoder.setPutTimecode(configurables["putTimecode"])    
+    videoRecoder.setFontScale(configurables["fontScale"])
+    videoRecoder.setRecordMovementOnly(configurables["recordMovementOnly"])
+    videoRecoder.setSeparateFiles(configurables["separateFiles"])
+    return videoRecorder
+
 configurables = receiveConfigurables()
 
 resolution = configurables["resolution"].split()
@@ -45,6 +53,7 @@ HEIGHT = int(resolution[2])
 camFeed = CameraFeed()
 camFeed.setResolution(WIDTH, HEIGHT)
 camFeed.setRotation(180)
+
 mt = MotionTracking(camFeed)
 mt.setResolution(WIDTH, HEIGHT)
 mt.setAimTowardsMotion(configurables["aimTowardsMotion"])
@@ -54,8 +63,7 @@ mt.setThreshold(configurables["threshold"])
 mt.setStandbyBetweenMovements(configurables["standbyBetweenMovements"])
 mt.setCameraFieldOfView(configurables["cameraFieldOfView"])
 mt.setMinTrigger(configurables["minTrigger"])
-
-
+mt.setVideoRecorder(getVideoRecorder(configurables))
 
 t = time.time()
 while True:
