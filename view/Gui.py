@@ -109,6 +109,9 @@ class Gui:
         self.label3 = QLabel("Resolution: ")
         self.comboBox1 = QComboBox()
         self.comboBox1.addItem("432 x 368")
+        self.comboBox1.addItem("640 x 480")
+        self.comboBox1.addItem("720 x 480")
+        self.comboBox1.addItem("1280 x 720")
         self.hBoxLayout3.addWidget(self.label3)
         self.hBoxLayout3.addWidget(self.comboBox1)
         
