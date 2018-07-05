@@ -49,7 +49,7 @@ class RecordVideo:
         print("putting timecode") 
         font = cv2.FONT_HERSHEY_SCRIPT_SIMPLEX
         lineType = 2
-        position = (self.__width,self.__height)
+        position = (0, self.__height)
         fontColor = (255,255,255)
         #position = (self.__width, self.__height)
         text = str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H:%M:%S')) 
