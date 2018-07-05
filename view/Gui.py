@@ -65,7 +65,7 @@ class Gui:
         
         self.hBoxLayout2 = QHBoxLayout()
         self.label2 = QLabel("Font scale: ")
-        self.spinBox1 = QSpinBox()
+        self.spinBox1 = QDoubleSpinBox()
         self.spinBox1.setValue(1)
         self.hBoxLayout2.addWidget(self.label2)
         self.hBoxLayout2.addWidget(self.spinBox1)
