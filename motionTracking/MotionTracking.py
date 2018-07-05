@@ -62,6 +62,7 @@ class MotionTracking:
         self.__frameCount += 1
         
         movementDetected = self.__frameCount - self.__lastMovementFrame < 15
+        self.__finalImg = np.hstack(self.__finalImg, self.__phase1)
         if self.__videoRecorder is not None: self.__videoRecorder.addFrame(self.__finalImg, movementDetected)
         
         return self.__finalImg
