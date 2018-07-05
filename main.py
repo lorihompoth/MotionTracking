@@ -40,7 +40,7 @@ elif sys.argv[1] == "1":
     while True:
         image = mt.getFinal()
         if image is not None:
-            #cv2.imshow("asd", image)
+            cv2.imshow("asd", image)
             fps = 1/(time.time() - t)
             print("fps: " + str(int(fps)))
 
