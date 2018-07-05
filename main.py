@@ -13,7 +13,7 @@ def receiveConfigurables():
     serversocket.listen(1)
     connection, address = serversocket.accept()
     buf = connection.recv(4096)
-    serversocket.close() 
+    serversocket.close()
     
     return ast.literal_eval(buf)
 
