@@ -75,6 +75,7 @@ while True:
         cv2.imshow(name, images[name])
         fps = 1/(time.time() - t)
         print("fps: " + str(int(fps)))
+        t = time.time()
     cv2.waitKey(1)
 
 
