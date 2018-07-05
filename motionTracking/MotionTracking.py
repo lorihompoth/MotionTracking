@@ -66,11 +66,14 @@ class MotionTracking:
         self.__phase3 = self.__binarizeOtsu(self.__phase2)
         #print("mt.getFinal/binarizeOtsu Finished")
 
+
         if self.__phase3 is None:
             self.__phase3 = self.__blackImage
             self.__phase4 = self.__blackImage
             self.__phase5 = self.__blackImage
+            movementDetected = False
         else:
+            movementDetected = True
             #print("mt.getFinal/__blur")
             self.__phase4 = self.__blur(self.__phase3)
             #print("mt.getFinal/__blur finished")
@@ -78,7 +81,7 @@ class MotionTracking:
             self.__phase5 = self.__binarizeSimple(self.__phase4)
             #print("mt.getFinal/__binarizeSimple finished")
 
-            if self.__frameCount > 3 and not self.__isMoveForbidden():
+            if self.__frameCount > 5 and not self.__isMoveForbidden():
                 #print("mt.getFinal/__pointOutMovingSpots")
                 closest = self.__pointOutMovingSpots(self.__phase5, self.__finalImg)
                 #print("mt.getFinal/__pointOutMovingSpots finished")
@@ -87,7 +90,7 @@ class MotionTracking:
                 #print("mt.getFinal/__mechanicsProceed finished")
 
         self.__frameCount += 1
-        if self.__videoRecorder is not None: self.__videoRecorder.addFrame(self.__finalImg)
+        if self.__videoRecorder is not None: self.__videoRecorder.addFrame(self.__finalImg, movementDetected)
         return self.__finalImg
 
     def __blackAndWhite(self, image):
