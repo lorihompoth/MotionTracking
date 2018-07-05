@@ -17,7 +17,6 @@ class RecordVideo:
 
     def startFile(self):
         self.__started = True
-        print("starting file")
         self.__ts = time.time()
         timestamp = datetime.datetime.fromtimestamp(self.__ts)
         if self.__path != "" and self.__path[-1] != "/": 
@@ -27,7 +26,6 @@ class RecordVideo:
         pass
         
     def __recordFrame(self, image):
-        print("saving frame " + str(self.__frameCount))
         self.__frameCount += 1
         image = self.timeCode(image)
         self.__out.write(image)
@@ -49,7 +47,6 @@ class RecordVideo:
     def timeCode(self, image):
         if not self.__putTimecode:
             return image
-        print("putting timecode") 
         font = cv2.FONT_HERSHEY_SCRIPT_SIMPLEX
         lineType = 2
         position = (10, self.__height-10)
@@ -66,7 +63,6 @@ class RecordVideo:
 
     def finish(self):
         self.__started = False
-        print("finishing file")
         self.__out.release()
         
     def setDestinationFolder(self, destinationFolder):

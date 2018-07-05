@@ -8,7 +8,6 @@ from motionTracking.RecordVideo import RecordVideo
 
 class MotionTracking:
     def __init__(self, cameraFeed):
-        #print("mt.constructor/started")
         self.__cameraFeed = cameraFeed
         self.__mechanics = mechanics
         self.__THRESHOLD = 14
@@ -28,70 +27,43 @@ class MotionTracking:
         self.__blackImage = np.zeros((self.__HEIGHT, self.__WIDTH, 3), np.uint8)
         self.__lastMovementFrame = 0
 
-        #print("mt.constructor/constants done")
-
         self.__phase0Prev = cameraFeed.getFrame()
-        #print("cameraFeed.getFrame finished")
-        #cv2.imshow("0prev", self.__phase0Prev)
         self.__phase1Prev = self.__blackAndWhite(self.__phase0Prev)
-        #cv2.imshow("1prev", self.__phase1Prev)
         self.__moveRestrictionStart = time.time()
         self.__mechanics.moveToMiddle()
 
 
     def getFinal(self):
-        #print("mt.getFinal/cameraFeed.getFrame()")
+        
         self.__phase0 = self.__cameraFeed.getFrame()
-        #print("mt.getFinal/cameraFeed.getFrame() finished")
-
-        #cv2.imshow("0", self.__phase0)
-        #print("mt.getFinal/__blackAndWhite")
         self.__phase1 = self.__blackAndWhite(self.__phase0)
-        #print("mt.getFinal/__blackAndWhite finished")
-
-        #cv2.imshow("1", self.__phase1)
         self.__finalImg = self.__phase0.copy()
-        #print("mt.getFinal/phase0 copied")
-
-
-        #print("mt.getFinal/__diff")
         self.__phase2 = self.__diff(self.__phase1, self.__phase1Prev)
-        #print("mt.getFinal/__diff finished")
-        #cv2.imshow("diff", self.__phase2)
-
+        
         self.__phase0Prev = self.__phase0
         self.__phase1Prev = self.__phase1
-
-        #input()
-        #print("mt.getFinal/binarizeOtsu")
+        
         self.__phase3 = self.__binarizeOtsu(self.__phase2)
-        #print("mt.getFinal/binarizeOtsu Finished")
-
+        
         if self.__phase3 is None:
             self.__phase3 = self.__blackImage
             self.__phase4 = self.__blackImage
             self.__phase5 = self.__blackImage
         else:
             self.__lastMovementFrame = self.__frameCount
-            #print("mt.getFinal/__blur")
             self.__phase4 = self.__blur(self.__phase3)
-            #print("mt.getFinal/__blur finished")
-            #print("mt.getFinal/__binarizeSimple")
             self.__phase5 = self.__binarizeSimple(self.__phase4)
-            #print("mt.getFinal/__binarizeSimple finished")
-
+            
             closest = self.__pointOutMovingSpots(self.__phase5, self.__finalImg)
             
             if self.__frameCount > 5 and not self.__isMoveForbidden():
-                #print("mt.getFinal/__pointOutMovingSpots")
-                #print("mt.getFinal/__pointOutMovingSpots finished")
-                #print("mt.getFinal/__mechanicsProceed")
                 self.__mechanicsProceed(closest)
-                #print("mt.getFinal/__mechanicsProceed finished")
-
+                
         self.__frameCount += 1
+        
         movementDetected = self.__frameCount - self.__lastMovementFrame < 15
         if self.__videoRecorder is not None: self.__videoRecorder.addFrame(self.__finalImg, movementDetected)
+        
         return self.__finalImg
 
     def __blackAndWhite(self, image):
@@ -103,7 +75,7 @@ class MotionTracking:
     def __binarizeOtsu(self, image):
         resultTuple = cv2.threshold(image, 128, 255, cv2.THRESH_OTSU)
         threshValue = resultTuple[0]
-        #print("Threshold: " + str(threshValue))
+        
         if threshValue > self.__THRESHOLD:
             return resultTuple[1]
         return None

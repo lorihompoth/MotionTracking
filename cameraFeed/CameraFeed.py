@@ -14,17 +14,12 @@ class CameraFeed:
             self.__camera.start()
             self.__started = True
             
-        #print("camFeed.getFrame/started")
         while True:
             with self.__cv:
                 while not self.__camera.isAvailable():
                     self.__cv.wait()
-            #print("camFeed.getFrame/notified for new frame")
             image = self.__camera.getFrame()
-            #print("camFeed.getFrame/got new frame")
             if image is not None:
-                    
-                #print("camFeed.getFrame/returning")
                 return image
             else:
                 print("CameraFeed prevented None")

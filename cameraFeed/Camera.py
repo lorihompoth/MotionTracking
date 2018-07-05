@@ -41,22 +41,15 @@ class Camera(threading.Thread):
         self.__cam.framerate = self.__framerate
         self.__rawCapture = PiRGBArray(self.__cam, size=(self.__width, self.__height))
 
-        #p = Preview(self.__cam)
-        #p.start()
         print("camera run started")
         i = 0
         for frame in self.__cam.capture_continuous(self.__rawCapture, format="bgr", use_video_port=True):
-            #print("camera for iteration")
             image = frame.array
-            #cv2.imshow("camera", frame.array)
             with self.__cv:
-                #print("camera with cv")
                 self.__savedFrame = image
                 self.__isAvailable = True
-                #print("camera has a new frame ready")
                 self.__cv.notify()
 
-            #key = cv2.waitKey(1) & 0xFF
             self.__rawCapture.truncate(0)
             i += 1
 

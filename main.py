@@ -73,9 +73,8 @@ while True:
     images = imageToDisplay(configurables, mt)
     for name in images.keys():
         cv2.imshow(name, images[name])
-        
+        fps = 1/(time.time() - t)
+        print("fps: " + str(int(fps)))
     cv2.waitKey(1)
-    fps = 1/(time.time() - t)
-    #print("fps: " + str(int(fps)))
 
 
