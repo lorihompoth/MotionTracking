@@ -80,16 +80,17 @@ class MotionTracking:
             self.__phase5 = self.__binarizeSimple(self.__phase4)
             #print("mt.getFinal/__binarizeSimple finished")
 
+            closest = self.__pointOutMovingSpots(self.__phase5, self.__finalImg)
+            
             if self.__frameCount > 5 and not self.__isMoveForbidden():
                 #print("mt.getFinal/__pointOutMovingSpots")
-                closest = self.__pointOutMovingSpots(self.__phase5, self.__finalImg)
                 #print("mt.getFinal/__pointOutMovingSpots finished")
                 #print("mt.getFinal/__mechanicsProceed")
                 self.__mechanicsProceed(closest)
                 #print("mt.getFinal/__mechanicsProceed finished")
 
         self.__frameCount += 1
-        movementDetected = self.__frameCount - self.__lastMovementFrame < 100
+        movementDetected = self.__frameCount - self.__lastMovementFrame < 30
         if self.__videoRecorder is not None: self.__videoRecorder.addFrame(self.__finalImg, movementDetected)
         return self.__finalImg
 

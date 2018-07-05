@@ -55,7 +55,7 @@ class RecordVideo:
         #position = (self.__width, self.__height)
         text = str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d-%H-%M-%S')) 
         cv2.putText(image, text,
-                    coordinates,
+                    position,
                     font,
                     self.__fontScale,
                     fontColor,
