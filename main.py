@@ -1,6 +1,6 @@
 import sys 
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 3:
     print("Usage: main.py [01] [01]")
     exit(0)
 elif sys.argv[1] == "0":
