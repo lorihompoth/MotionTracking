@@ -6,8 +6,9 @@ import cv2
 import time
 from threading import Thread
 import thread
-import socket 
 '''
+import socket 
+
 import sys # for gui
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
