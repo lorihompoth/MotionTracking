@@ -20,11 +20,11 @@ class RecordVideo:
         print("starting file")
         self.__ts = time.time()
         filename = str(datetime.datetime.fromtimestamp(self.__ts).strftime('%Y-%m-%d-%H-%M-%S') + ".avi")
-        self.__out = cv2.VideoWriter(filename, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (self.__width, self.__height))
+        self.__out = cv2.VideoWriter(filename, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 13, (self.__width, self.__height))
         pass
         
     def __recordFrame(self, image):
-        print("saving frame" + str(self.__frameCount))
+        print("saving frame " + str(self.__frameCount))
         self.__frameCount += 1
         image = self.timeCode(image)
         self.__out.write(image)
