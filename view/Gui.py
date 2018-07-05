@@ -223,7 +223,7 @@ class Gui:
         self.configurables["recordVideo"] =  self.checkBox8.isChecked()
         self.configurables["destinationFolder"] =  str(self.lineEdit1.text())
         self.configurables["putTimecode"] =  self.checkBox9.isChecked()
-        self.configurables["fontScale"] =  double(self.spinBox1.value())
+        self.configurables["fontScale"] =  self.spinBox1.value()
         self.configurables["recordMovementOnly"] =  self.radioButton2.isChecked()
         self.configurables["separateFiles"] =  self.radioButton4.isChecked()
         self.configurables["resolution"] =  str(self.comboBox1.currentText())
