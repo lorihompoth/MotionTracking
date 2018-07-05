@@ -39,11 +39,11 @@ class RecordVideo:
             else:
                 if not self.__started:
                     self.startFile()
-                self.__recordFrame
+                self.__recordFrame(image)
         else:
             if not self.__started:
                 self.startFile()
-            self.__recordFrame    
+            self.__recordFrame(image)   
 
     def timeCode(self, image):
         if not self.__putTimecode:
