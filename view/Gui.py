@@ -302,5 +302,5 @@ class Gui:
                 print("fps: " + str(int(fps)))
                 t = time.time()
     
-
+Gui()
 
