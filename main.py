@@ -28,12 +28,12 @@ buf = connection.recv(4096)
 if len(buf) > 0:
     print buf
 serversocket.close()
-
+time.sleep(1)
 #ast.literal_eval("{'1': 2}")
 
 WIDTH = 432
 HEIGHT = 368
-FRAMERATE = 20l
+FRAMERATE = 20
 ROTATION = 180
 camFeed = CameraFeed(WIDTH, HEIGHT, ROTATION, FRAMERATE)
 #print(self.__destinationFolder[7:])
