@@ -18,7 +18,24 @@ def receiveConfigurables():
     
     return ast.literal_eval(buf)
 
-
+def imageToDisplay(configurables, mt):
+    images = {}
+    if not configurables["preview"]:
+        return images
+    if configurables["finalScreen"]:
+        images["Final Screen"] = mt.getFinal()
+    if configurables["phase1"]:
+        images["Phase 1"] = mt.getPhase1()
+    if configurables["phase2"]:
+        images["Phase 2"] = mt.getPhase2()
+    if configurables["phase3"]:
+        images["Phase 3"] = mt.getPhase3()
+    if configurables["phase4"]:
+        images["Phase 4"] = mt.getPhase4()
+    if configurables["phase5"]:
+        images["Phase 5"] = mt.getPhase5()
+    return images
+        
 configurables = receiveConfigurables()
 
 resolution = configurables["resolution"].split()
@@ -38,10 +55,13 @@ mt.setCameraFieldOfView(configurables["cameraFieldOfView"])
 mt.setMinTrigger(configurables["minTrigger"])
 
 
+
 t = time.time()
 while True:
-    #input("type a number: ")
-    image = mt.getFinal()
+    images = imageToDisplay(configurables, mt)
+    for name in images.keys():
+        cv2.imshow(name, images[name])
+        
     if image is not None:
         cv2.imshow("asd", image)
         cv2.waitKey(1)

@@ -190,6 +190,16 @@ class MotionTracking:
         self.__centerY = self.__HEIGHT / 2
         self.__blackImage = np.zeros((self.__HEIGHT, self.__WIDTH, 3), np.uint8)
         
+    def getPhase1(self):
+        return self.__phase1
+    def getPhase2(self):
+        return self.__phase2
+    def getPhase3(self):
+        return self.__phase3
+    def getPhase4(self):
+        return self.__phase4
+    def getPhase5(self):
+        return self.__phase5
     
     def setAimTowardsMotion(self, aimTowardsMotion):
         self.__aimTowardsMotion = aimTowardsMotion
