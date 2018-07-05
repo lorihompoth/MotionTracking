@@ -66,7 +66,7 @@ class Gui:
         self.hBoxLayout2 = QHBoxLayout()
         self.label2 = QLabel("Font scale: ")
         self.spinBox1 = QDoubleSpinBox()
-        self.spinBox1.setValue(1)
+        self.spinBox1.setValue(0.2)
         self.hBoxLayout2.addWidget(self.label2)
         self.hBoxLayout2.addWidget(self.spinBox1)
         
@@ -223,7 +223,7 @@ class Gui:
         self.configurables["recordVideo"] =  self.checkBox8.isChecked()
         self.configurables["destinationFolder"] =  str(self.lineEdit1.text())
         self.configurables["putTimecode"] =  self.checkBox9.isChecked()
-        self.configurables["fontScale"] =  int(self.spinBox1.value())
+        self.configurables["fontScale"] =  double(self.spinBox1.value())
         self.configurables["recordMovementOnly"] =  self.radioButton2.isChecked()
         self.configurables["separateFiles"] =  self.radioButton4.isChecked()
         self.configurables["resolution"] =  str(self.comboBox1.currentText())

@@ -11,7 +11,7 @@ class RecordVideo:
         self.__separateFiles = True
         self.__started = False
         self.__ts = time.time()
-        self.__i = 0
+        self.__frameCount = 0
         self.__width = 432
         self.__heigth = 368
 
@@ -24,10 +24,8 @@ class RecordVideo:
         pass
         
     def __recordFrame(self, image):
-        print("saving frame")
-        if image is None:
-            print("Image is none")
-            return
+        print("saving frame" + str(self.__frameCount))
+        self.__frameCount += 1
         image = self.timeCode(image)
         self.__out.write(image)
 
@@ -48,6 +46,7 @@ class RecordVideo:
     def timeCode(self, image):
         if not self.__putTimecode:
             return image
+        print("putting timecode") 
         font = cv2.FONT_HERSHEY_SIMPLEX
         lineType = 2
         position = (100,100)
