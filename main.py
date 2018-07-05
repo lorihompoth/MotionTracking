@@ -1,7 +1,7 @@
 import sys 
 
-if len(sys.argv) != 3:
-    print("Usage: main.py [01] [01]")
+if len(sys.argv) != 2:
+    print("Usage: main.py [01]")
     exit(0)
 elif sys.argv[1] == "0":
     from view.Gui import Gui
