@@ -109,6 +109,9 @@ class Gui:
         self.label3 = QLabel("Resolution: ")
         self.comboBox1 = QComboBox()
         self.comboBox1.addItem("432 x 368")
+        self.comboBox1.addItem("640 x 480")
+        self.comboBox1.addItem("720 x 480")
+        self.comboBox1.addItem("1280 x 720")
         self.hBoxLayout3.addWidget(self.label3)
         self.hBoxLayout3.addWidget(self.comboBox1)
         
@@ -135,7 +138,7 @@ class Gui:
         self.label6 = QLabel("Standby between movements (ms):")
         self.lineEdit4 = QLineEdit()
         self.lineEdit4.setValidator(QIntValidator())
-        self.lineEdit4.setText("500")
+        self.lineEdit4.setText("560")
         self.hBoxLayout6.addWidget(self.label6)
         self.hBoxLayout6.addWidget(self.lineEdit4)
         
